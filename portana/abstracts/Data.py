@@ -6,43 +6,50 @@ import pandas as pd
 
 
 class TimeSeries(ABC):
-    def __init__(self, dates: ndarray, prices: ndarray):
+    def __init__(self, dates: ndarray, prices: ndarray, tot_ret_idx: ndarray):
         self.dates = dates
         self.prices = prices
+        self.tot_ret_idx = tot_ret_idx
         super().__init__()
 
     def __repr__(self):
-        df = pd.DataFrame(data=self.prices, index=self.dates, columns=["Price"])
-        return df.__str__()
+        return str(self.to_df())
 
-    def __str__(self):
-        df = pd.DataFrame(data=self.prices, index=self.dates, columns=["Price"])
-        return df.__str__()
-
-    @abstractmethod
-    def get_date(self, date: str):
-        pass
-
-    @abstractmethod
-    def get_dates(self, dates: List[str]):
-        pass
+    def to_df(self):
+        df = pd.DataFrame(
+            data={"Price": self.prices, "Total Return Index": self.tot_ret_idx},
+            index=self.dates,
+            columns=["Price", "Total Return Index"],
+        )
+        return df
 
     @abstractmethod
-    def get_date_range(self, date_range: Tuple[str, str]):
+    def __getitem__(self, key):
         pass
 
 
-class Description(ABC):
+class AssetType(ABC):
     @abstractmethod
     def get_description(self) -> dict:
         pass
 
+    @abstractmethod
+    def get_exposures(self) -> dict:
+        pass
+
+    @abstractmethod
+    def get_timeseries(self) -> TimeSeries:
+        pass
+
 
 class Security(ABC):
-    def __init__(self, isin: str, timeseries: TimeSeries, description: dict):
+    def __init__(
+        self, isin: str, timeseries: TimeSeries, description: dict, exposures: dict
+    ):
         self.isin = isin
         self.timeseries = timeseries
         self.description = description
+        self.exposures = exposures
         super().__init__()
 
     def __repr__(self):
@@ -53,11 +60,13 @@ class Security(ABC):
             output += f"{key.capitalize()}:  {self.description[key]} \n"
 
         output += "----------------------------------------- \n"
+        for key in self.exposures:
+            output += f"{key.capitalize()}:  {self.exposures[key]} \n"
+
+        output += "----------------------------------------- \n"
         output += str(self.timeseries)
 
         return output
-
-        # print(self.timeseries)
 
 
 class Connection(ABC):
