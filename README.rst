@@ -19,4 +19,4 @@ on Unix, run: ``source venv-name/Scripts/activate``
 
 on Windows , run (using Powershell): ``./venv-name/Scripts/Activate.ps1``
 
-
+then, run ``ipython kernel install --name "portana" --user``
