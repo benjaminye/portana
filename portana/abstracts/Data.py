@@ -81,3 +81,7 @@ class Connection(ABC):
     @abstractmethod
     def query_fund(self) -> List[Security]:
         pass
+
+
+class Query(ABC):
+    pass
