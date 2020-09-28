@@ -6,16 +6,14 @@ import pandas as pd
 from ..abstracts import Data
 
 
-class SimTimeSeries(Data.TimeSeries):
-    def __init__(self, dates: np.ndarray, prices: np.ndarray, tot_ret_idx: np.ndarray):
+class AnalyzerSeries(Data.TimeSeries):
+    def __init__(self, dates: np.ndarray, results: np.ndarray, col_names: List[str]):
         self.dates = dates
-        self.prices = prices
-        self.tot_ret_idx = tot_ret_idx
+        self.results = results
+        self.col_names = col_names
 
-    def __make_self(
-        self, dates: np.ndarray, prices: np.ndarray, tot_ret_idx: np.ndarray
-    ):
-        return SimTimeSeries(dates, prices, tot_ret_idx)
+    def __make_self(self, dates: np.ndarray, prices: np.ndarray, col_names: List[str]):
+        return AnalyzerSeries(dates, results, col_names)
 
     def __getitem__(self, subscript: Union[str, list, slice]):
         if isinstance(subscript, slice):
@@ -24,8 +22,7 @@ class SimTimeSeries(Data.TimeSeries):
             )
             return self.__make_self(
                 self.dates[match][:: subscript.step],
-                self.prices[match][:: subscript.step],
-                self.tot_ret_idx[match][:: subscript.step],
+                self.results[match][:: subscript.step],
             )
 
         elif isinstance(subscript, str):
@@ -39,12 +36,9 @@ class SimTimeSeries(Data.TimeSeries):
             match = np.isin(self.dates, items)
 
         return self.__make_self(
-            self.dates[match], self.prices[match], self.tot_ret_idx[match]
+            self.dates[match], self.results[match], self.col_names[match]
         )
 
     def to_df(self) -> pd.DataFrame:
-        df = pd.DataFrame(
-            data={"Price": self.prices, "Total Return Index": self.tot_ret_idx},
-            index=self.dates,
-        )
+        df = pd.DataFrame(data=self.results, index=self.dates, columns=self.col_names)
         return df
