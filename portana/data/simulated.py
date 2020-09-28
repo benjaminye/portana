@@ -126,6 +126,7 @@ class EquityFundAssetType(Data.AssetType):
 
         description = {}
         description["name"] = self.generator.generate_name()
+        description["fee"] = self.generator.generate_fee()
 
         return description
 

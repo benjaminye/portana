@@ -106,6 +106,12 @@ class Generator:
 
         return ticker
 
+    def generate_fee(self) -> float:
+        random.seed(a=self.seed)
+        fee = random.uniform(0, 0.02)
+
+        return round(fee, 3)
+
     def generate_sector(self) -> str:
         sectors = ["Technology", "Industrials", "Financials"]
         return self.__random_choice(sectors)
