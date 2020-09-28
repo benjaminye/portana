@@ -6,6 +6,7 @@ import numpy as np
 
 from . import generator
 from ..abstracts import Data
+from ..timeseries import simtimeseries
 
 
 class SimConnection(Data.Connection):
@@ -81,7 +82,7 @@ class EquityAssetType(Data.AssetType):
         prices = self.generator.generate_prices()
         tot_ret_idx = self.generator.generate_tot_ret_idx()
 
-        return SimTimeSeries(dates, prices, tot_ret_idx)
+        return simtimeseries.SimTimeSeries(dates, prices, tot_ret_idx)
 
     def get_description(self, seed: int) -> dict:
         self.generator.set_seed(seed)
@@ -118,7 +119,7 @@ class EquityFundAssetType(Data.AssetType):
         prices = self.generator.generate_prices()
         tot_ret_idx = self.generator.generate_tot_ret_idx()
 
-        return SimTimeSeries(dates, prices, tot_ret_idx)
+        return simtimeseries.SimTimeSeries(dates, prices, tot_ret_idx)
 
     def get_description(self, seed: int) -> dict:
         self.generator.set_seed(seed)

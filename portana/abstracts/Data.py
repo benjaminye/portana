@@ -2,29 +2,20 @@ from abc import ABC, abstractmethod
 from typing import List, Tuple
 
 from numpy import ndarray
-import pandas as pd
+from pandas import DataFrame
 
 
 class TimeSeries(ABC):
-    def __init__(self, dates: ndarray, prices: ndarray, tot_ret_idx: ndarray):
-        self.dates = dates
-        self.prices = prices
-        self.tot_ret_idx = tot_ret_idx
-        super().__init__()
-
     def __repr__(self):
         return str(self.to_df())
 
-    def to_df(self):
-        df = pd.DataFrame(
-            data={"Price": self.prices, "Total Return Index": self.tot_ret_idx},
-            index=self.dates,
-            columns=["Price", "Total Return Index"],
-        )
-        return df
+    @abstractmethod
+    def to_df(self) -> DataFrame:
+        pass
 
     @abstractmethod
     def __getitem__(self, key):
+        # should return another instance of the same object
         pass
 
 
