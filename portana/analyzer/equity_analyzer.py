@@ -143,8 +143,8 @@ class EquityAnalyzer(Analyzer.Analyzer):
         series[0], index[0] = float(initial_val), float(initial_val)
         series_ret, index_ret = self.get_returns(mode)
         series[1:], index[1:] = (
-            series_ret.results + 1,
-            index_ret.results + 1,
+            series_ret.get_data() + 1,
+            index_ret.get_data() + 1,
         )
         series, index = np.cumprod(series, axis=0), np.cumprod(index, axis=0)
 
@@ -235,7 +235,7 @@ class EquityAnalyzer(Analyzer.Analyzer):
         )
 
         securities_vol, index_vol = self.get_volatilities(mode, adj_factor)
-        securities_vol, index_vol = securities_vol.results, index_vol.results
+        securities_vol, index_vol = securities_vol.get_data(), index_vol.get_data()
 
         securities_sharpe, index_sharpe = (
             (securities_per_ret - rfr) / securities_vol,
