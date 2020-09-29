@@ -41,3 +41,9 @@ class AnalyzerSeries(Data.TimeSeries):
     def to_df(self) -> pd.DataFrame:
         df = pd.DataFrame(data=self.results, index=self.dates, columns=self.col_names)
         return df
+
+    def get_dates(self) -> np.ndarray:
+        return self.dates
+
+    def get_data(self) -> np.ndarray:
+        return self.results
