@@ -44,10 +44,10 @@ class EquityAnalyzer(Analyzer.Analyzer):
     def __update_earliest_common_date(self) -> None:
         start_dates = []
         for security in self.securities:
-            start_date = security.timeseries.dates[0]
+            start_date = security.get_timeseries().get_dates()[0]
             start_dates.append(start_date)
 
-        index_start_date = self.comp_index.timeseries.dates[0]
+        index_start_date = self.comp_index.get_timeseries().get_dates()[0]
         start_dates.append(index_start_date)
 
         self._earliest_common_date = max(start_dates)
@@ -55,10 +55,10 @@ class EquityAnalyzer(Analyzer.Analyzer):
     def __update_latest_common_date(self) -> None:
         end_dates = []
         for security in self.securities:
-            start_date = security.timeseries.dates[-1]
+            start_date = security.get_timeseries().get_dates()[-1]
             end_dates.append(start_date)
 
-        index_end_date = self.comp_index.timeseries.dates[-1]
+        index_end_date = self.comp_index.get_timeseries().get_dates()[-1]
         end_dates.append(index_end_date)
 
         self._latest_common_date = min(end_dates)
@@ -67,7 +67,7 @@ class EquityAnalyzer(Analyzer.Analyzer):
         start = self._earliest_common_date
         end = self._latest_common_date
 
-        dates = self.securities[0].timeseries[start:end].dates
+        dates = self.securities[0].get_timeseries()[start:end].get_dates()
 
         self._date_series = dates
 
@@ -81,8 +81,9 @@ class EquityAnalyzer(Analyzer.Analyzer):
         tot_ret_idx = np.ndarray((len(dates), len(self.securities)))
 
         for index, security in enumerate(self.securities):
-            prices[:, index] = security.timeseries[start:end].prices
-            tot_ret_idx[:, index] = security.timeseries[start:end].tot_ret_idx
+            prices[:, index], tot_ret_idx[:, index] = security.get_timeseries()[
+                start:end
+            ].get_data()
 
         self._price_series = AnalyzerSeries(dates, prices, self._col_names)
         self._tot_ret_idx_series = AnalyzerSeries(dates, tot_ret_idx, self._col_names)
@@ -101,12 +102,14 @@ class EquityAnalyzer(Analyzer.Analyzer):
         end = self._latest_common_date
 
         if mode == "px":
-            series = self._price_series.results.copy()
-            index = self.comp_index.timeseries[start:end].prices.copy()
+            series = self._price_series.get_data().copy()
+            index, _ = self.comp_index.get_timeseries()[start:end].get_data()
+            index = index.copy()
 
         elif mode == "tr":
-            series = self._tot_ret_idx_series.results.copy()
-            index = self.comp_index.timeseries[start:end].tot_ret_idx.copy()
+            series = self._tot_ret_idx_series.get_data().copy()
+            _, index = self.comp_index.get_timeseries()[start:end].get_data()
+            index = index.copy()
 
         return series, index
 
@@ -172,7 +175,7 @@ class EquityAnalyzer(Analyzer.Analyzer):
         dates = self._date_series[[-1]]
 
         securities_ret, index_ret = self.get_returns(mode)
-        securities_ret, index_ret = securities_ret.results, index_ret.results
+        securities_ret, index_ret = securities_ret.get_data(), index_ret.get_data()
 
         betas = (
             np.cov(securities_ret, y=index_ret, rowvar=False)
@@ -193,7 +196,7 @@ class EquityAnalyzer(Analyzer.Analyzer):
         dates = self._date_series[[-1]]
 
         securities_ret, index_ret = self.get_returns(mode)
-        securities_ret, index_ret = securities_ret.results, index_ret.results
+        securities_ret, index_ret = securities_ret.get_data(), index_ret.get_data()
 
         securities_var, index_var = (
             np.var(securities_ret, axis=0, keepdims=True, ddof=1),
@@ -216,7 +219,10 @@ class EquityAnalyzer(Analyzer.Analyzer):
         dates = self._date_series[[-1]]
 
         securities_ret, index_ret = self.get_returns(mode)
-        securities_ret, index_ret = securities_ret.results + 1, index_ret.results + 1
+        securities_ret, index_ret = (
+            securities_ret.get_data() + 1,
+            index_ret.get_data() + 1,
+        )
 
         securities_cumu_ret, index_cumu_ret = (
             np.cumprod(securities_ret, axis=0) - 1,

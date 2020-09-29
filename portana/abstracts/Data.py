@@ -10,12 +10,20 @@ class TimeSeries(ABC):
         return str(self.to_df())
 
     @abstractmethod
+    def __getitem__(self, key):
+        # should return another instance of the same object
+        pass
+
+    @abstractmethod
     def to_df(self) -> DataFrame:
         pass
 
     @abstractmethod
-    def __getitem__(self, key):
-        # should return another instance of the same object
+    def get_dates(self) -> ndarray:
+        pass
+
+    @abstractmethod
+    def get_data(self) -> Union[ndarray, Tuple[ndarray]]:
         pass
 
 
@@ -89,6 +97,18 @@ class Security(ABC):
         output += str(self.timeseries)
 
         return output
+
+    def get_isin(self):
+        return self.isin
+
+    def get_timeseries(self):
+        return self.timeseries
+
+    def get_description(self):
+        return self.description
+
+    def get_exposures(self):
+        return self.exposures
 
 
 class Connection(ABC):

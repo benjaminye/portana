@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Tuple
 
 import numpy as np
 import pandas as pd
@@ -48,3 +48,9 @@ class SimTimeSeries(Data.TimeSeries):
             index=self.dates,
         )
         return df
+
+    def get_dates(self) -> np.ndarray:
+        return self.dates
+
+    def get_data(self) -> Tuple[np.ndarray, np.ndarray]:
+        return self.prices, self.tot_ret_idx
