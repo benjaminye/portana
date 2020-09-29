@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Tuple
+from typing import List, Tuple, Union, Literal
 
 from numpy import ndarray
 from pandas import DataFrame
@@ -30,6 +30,37 @@ class AssetType(ABC):
 
     @abstractmethod
     def get_timeseries(self) -> TimeSeries:
+        pass
+
+
+class FrequencyConverter(ABC):
+    @abstractmethod
+    def get_daily(self) -> TimeSeries:
+        pass
+
+    @abstractmethod
+    def get_weekly(self) -> TimeSeries:
+        pass
+
+    @abstractmethod
+    def get_monthly(self) -> TimeSeries:
+        pass
+
+    @abstractmethod
+    def get_quarterly(self) -> TimeSeries:
+        pass
+
+    @abstractmethod
+    def get_yearly(self) -> TimeSeries:
+        pass
+
+    @abstractmethod
+    def get_freq(
+        self,
+        freq: Union[
+            Literal["D"], Literal["W"], Literal["M"], Literal["Q"], Literal["Y"]
+        ],
+    ) -> TimeSeries:
         pass
 
 

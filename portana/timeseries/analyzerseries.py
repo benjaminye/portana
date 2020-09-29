@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List
 
 import numpy as np
 import pandas as pd
@@ -12,17 +12,18 @@ class AnalyzerSeries(Data.TimeSeries):
         self.results = results
         self.col_names = col_names
 
-    def __make_self(self, dates: np.ndarray, prices: np.ndarray, col_names: List[str]):
+    def __make_self(self, dates: np.ndarray, results: np.ndarray, col_names: List[str]):
         return AnalyzerSeries(dates, results, col_names)
 
     def __getitem__(self, subscript: Union[str, list, slice]):
         if isinstance(subscript, slice):
             match = (self.dates >= np.datetime64(subscript.start)) & (
-                self.dates < np.datetime64(subscript.stop)
+                self.dates <= np.datetime64(subscript.stop)
             )
             return self.__make_self(
                 self.dates[match][:: subscript.step],
                 self.results[match][:: subscript.step],
+                self.col_names,
             )
 
         elif isinstance(subscript, str):
@@ -35,9 +36,7 @@ class AnalyzerSeries(Data.TimeSeries):
 
             match = np.isin(self.dates, items)
 
-        return self.__make_self(
-            self.dates[match], self.results[match], self.col_names[match]
-        )
+        return self.__make_self(self.dates[match], self.results[match], self.col_names)
 
     def to_df(self) -> pd.DataFrame:
         df = pd.DataFrame(data=self.results, index=self.dates, columns=self.col_names)

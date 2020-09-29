@@ -20,7 +20,7 @@ class SimTimeSeries(Data.TimeSeries):
     def __getitem__(self, subscript: Union[str, list, slice]):
         if isinstance(subscript, slice):
             match = (self.dates >= np.datetime64(subscript.start)) & (
-                self.dates < np.datetime64(subscript.stop)
+                self.dates <= np.datetime64(subscript.stop)
             )
             return self.__make_self(
                 self.dates[match][:: subscript.step],

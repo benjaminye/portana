@@ -29,7 +29,7 @@ class Analyzer(ABC):
         pass
 
     @abstractmethod
-    def set_index(self):
+    def set_comp_index(self):
         pass
 
     @abstractmethod
