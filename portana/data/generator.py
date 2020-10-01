@@ -1,12 +1,103 @@
-from typing import List, Tuple
+from typing import Tuple
 import string
 import random
 
 import numpy as np
 
+"""Class to generate random data
+
+Used by AssetClass class to retrieve data specific
+for each asset class
+
+To Do
+-------
+-   Seperate into different classes for
+    different AssetClass
+"""
+
 
 class Generator:
-    # TODO: Maybe seperate into SubGenerators for different AssetClass; having them inherit this class
+    """Class used for generating random data
+
+    This is used by simulated module to generate random data
+
+
+    Attributes
+    -------
+    seed: int
+        Seed for random number generator
+        It is recommended for simulated module to use
+        ISIN for seed so that return data stay the same
+    max_drift: float
+        Maximum mean return used by random.normal to
+        generate random return data for buiding price time series
+    max_vol: float
+        Maximum standard deviation used by random.normal
+        to generate random return data for building price time series
+    max_distribution: float
+        Maximum added return to price time series to create total return index
+        time series
+    date_range: Tuple[str, str]
+        Date range to generate simulated data from
+        Example: ["2001-01-01", "2005-01-01"]
+    initial_price_range: Tuple[int, int]
+        Range of desired initial price, used by random.uniform
+        to set an initial price
+
+
+    Methods
+    -------
+    set_seed(seed:int)
+        Setter method for seed
+    set_max_drift(max_drift: float)
+        Setter for max_drift
+    set_max_vol(max_vol: float)
+        Setter for max_vol
+    set_distribution(max_vol: float)
+        Setter for max_vol
+    set_max_vol(max_vol: float)
+        Setter for max_vol
+    set_max_vol(max_vol: float)
+        Setter for max_vol
+    generate_dates() -> numpy.ndarray
+        Generate a numpy array of dates
+    generate_prices() -> numpy.ndarray
+        Generate a price time series
+    generate_tot_ret_idx() -> numpy.ndarray
+        Generate a total return index series
+    generate_name() -> str
+        Generate security's name
+    generate_ticker() -> str
+        Generate security's ticker
+    generate_fee() -> float
+        Generate security's fee
+    generate_sector() -> str
+        Generate security's sector
+    generate_geography() -> str
+        Generate security's geography
+    generate_strategy() -> str
+        Generate security's strategy
+    generate_risk() -> str
+        Generate security's risk level
+
+    Example
+    -------
+    >>> generator = Generator()
+    >>> generator.set_seed(412843)
+    >>> generator.set_max_drift(0.01)
+    >>> generator.set_max_vol(0.05)
+    >>> generator.set_max_distribution(0.005)
+    >>> generator.set_date_range(["2020-01-01", "2020-02-01"])
+    >>> generator.set_initial_price_range([5, 100])
+
+    >>> generator.generate_dates()
+    numpy.ndarray
+    >>> generator.generate_prices()
+    numpy.ndarray
+    >>> generator.generate_sector()
+    "Technology"
+    """
+
     def __init__(self):
         self.seed: int = None
         self.max_drift: float = None
@@ -15,76 +106,153 @@ class Generator:
         self.date_range: Tuple[str, str] = None
         self.initial_price_range: Tuple[int, int] = None
 
-        self.days_delta: int = None
-        self.drift: float = None
-        self.vol: float = None
-        self.distribution: float = None
-        self.initial_price: float = None
+        self._days_delta: int = None
+        self._drift: float = None
+        self._vol: float = None
+        self._distribution: float = None
+        self._initial_price: float = None
 
     def set_seed(self, seed: int) -> None:
+        """Setter method for seed
+
+        Sets seed, then runs a routine to generate
+        set private attributes according to the seed set
+
+
+        Parameters
+        -------
+        seed: int
+            The seed with which to feed into random number generator
+        """
         self.seed = seed
 
         random.seed(a=self.seed)
-        self.drift = random.uniform(0, self.max_drift)
+        self._drift = random.uniform(0, self.max_drift)
 
         random.seed(a=self.seed)
-        self.vol = random.uniform(0, self.max_vol)
+        self._vol = random.uniform(0, self.max_vol)
 
         random.seed(a=self.seed)
-        self.distribution = random.uniform(0, self.max_distribution)
+        self._distribution = random.uniform(0, self.max_distribution)
 
         random.seed(a=self.seed)
-        self.initial_price = random.uniform(
+        self._initial_price = random.uniform(
             self.initial_price_range[0], self.initial_price_range[1]
         )
 
     def set_max_drift(self, max_drift: float) -> None:
+        """Setter for max_drift
+
+
+        Parameters
+        -------
+        max_drift: float
+            Maximum average returns allowed
+        """
         self.max_drift = max_drift
 
     def set_max_vol(self, max_vol: float) -> None:
+        """Setter for max_vol
+
+
+        Parameters
+        -------
+        max_vol: float
+            Maximum standard deviation of returns allowed
+        """
         self.max_vol = max_vol
 
     def set_max_distribution(self, max_distribution: float) -> None:
+        """Setter for max_distribution
+
+
+        Parameters
+        -------
+        max_distribution: float
+            Maximum additional return tacked onto returns series
+            generated by get_prices() to generate get_tot_ret_idx()
+        """
         self.max_distribution = max_distribution
 
     def set_date_range(self, date_range: Tuple[str, str]) -> None:
+        """Setter for date_range
+
+
+        Parameters
+        -------
+        date_range: Tuple[str, str]
+            Date range from which to generate time series data
+            Example: ("2020-01-01", "2020-02-01")
+        """
         self.date_range = date_range
 
         days_delta = (
             np.datetime64(self.date_range[1]) - np.datetime64(self.date_range[0]) + 1
         )
-        self.days_delta = days_delta.astype("timedelta64[D]") // np.timedelta64(1, "D")
+        self._days_delta = days_delta.astype("timedelta64[D]") // np.timedelta64(1, "D")
 
     def set_initial_price_range(self, price_range: Tuple[int, int]) -> None:
+        """Setter for initial_price_range
+
+
+        Parameters
+        -------
+        price_range: Tuple[int, int]
+            Initial price range of the security
+        """
         self.initial_price_range = price_range
 
     def generate_dates(self) -> np.ndarray:
+        """Generate a numpy array of dates
+
+
+        Returns
+        -------
+        numpy.ndarray
+            Numpy array of dates set from set_date_range(date_range)
+        """
 
         dates = np.array(self.date_range[0], dtype=np.datetime64)
-        dates = dates + np.arange(self.days_delta)
+        dates = dates + np.arange(self._days_delta)
 
         return dates
 
     def generate_prices(self) -> np.ndarray:
+        """Generate a price time series
+
+
+        Returns
+        -------
+        numpy.ndarray
+            Numpy array of prices
+        """
         prices = (
             np.random.default_rng(self.seed).normal(
-                self.drift, self.vol, self.days_delta
+                self._drift, self._vol, self._days_delta
             )
             + 1
         )
 
-        prices[0] = self.initial_price
+        prices[0] = self._initial_price
         prices = np.cumprod(prices)
 
         return prices
 
     def generate_tot_ret_idx(self) -> np.ndarray:
+        """Generate a total returns index time series
+
+
+        Returns
+        -------
+        numpy.ndarray
+            Numpy array of total returns index
+        """
         tot_ret_idx = (
             np.random.default_rng(self.seed).normal(
-                self.drift, self.vol, self.days_delta
+                self._drift, self._vol, self._days_delta
             )
             + 1
-            + self.distribution
+            + self._distribution
         )
         tot_ret_idx[0] = 100
         tot_ret_idx = np.cumprod(tot_ret_idx)
@@ -92,9 +260,27 @@ class Generator:
         return tot_ret_idx
 
     def generate_name(self) -> str:
+        """Generate security name
+
+        Currently set up to output "Simulated Security {seed}"
+
+
+        Returns
+        -------
+        str
+            security name
+        """
         return f"Simulated Security {self.seed}"
 
     def generate_ticker(self) -> str:
+        """Generate a random ticker
+
+
+        Returns
+        -------
+        str
+            Ticker
+        """
         random.seed(a=self.seed)
         length = random.choice(range(1, 5))
         letters = string.ascii_uppercase
@@ -107,27 +293,89 @@ class Generator:
         return ticker
 
     def generate_fee(self) -> float:
+        """Generate a random fee
+
+        Currently setup to return a float
+        between 0 and 0.02
+
+
+        Returns
+        -------
+        float
+            Amount of fees
+        """
         random.seed(a=self.seed)
         fee = random.uniform(0, 0.02)
 
         return round(fee, 3)
 
     def generate_sector(self) -> str:
+        """Generate a random sector
+
+        Currently set up to randomly choose between
+        Technology, Industrials, and Financials
+
+
+        Returns
+        -------
+        str
+            Sector
+        """
         sectors = ["Technology", "Industrials", "Financials"]
         return self.__random_choice(sectors)
 
     def generate_geography(self) -> str:
+        """Generate geography
+
+        Currently setup to randomly choose between
+        United States and Canada
+
+
+        Returns
+        -------
+        str
+            Geography
+        """
         geographies = ["United States", "Canada"]
         return self.__random_choice(geographies)
 
     def generate_strategy(self) -> str:
+        """Generate a strategy
+
+        Currently setup to randomly choose between
+        Growth, Income, Value, and Balanced
+
+        Returns
+        -------
+        str
+            Strategy
+        """
         strategies = ["Growth", "Income", "Value", "Balanced"]
         return self.__random_choice(strategies)
 
     def generate_risk(self) -> str:
+        """Generate risk profile
+
+        Currently setup to randomly choose betwenn
+        High, Medium, and Low
+
+
+        Returns
+        -------
+        str
+            Risk Profile
+        """
         risks = ["High", "Medium", "Low"]
         return self.__random_choice(risks)
 
     def __random_choice(self, choices: list) -> str:
+        """Generate a price time series
+
+
+        Returns
+        -------
+        numpy.ndarray
+            Numpy array of prices
+        """
         random.seed(a=self.seed)
         return random.choice(choices)

@@ -13,10 +13,10 @@ To start a dev environment, make sure you have `Poetry <https://python-poetry.or
 
 Run Demo
 ---------
-First ``cd`` into poetry's virtual environment directory.
+First ``cd`` into poetry's virtual environment directory. You can find it via: ``poetry show -v``
 
 on Unix, run: ``source venv-name/Scripts/activate``
 
-on Windows , run (using Powershell): ``./venv-name/Scripts/Activate.ps1``
+on Windows, run (using Powershell): ``./venv-name/Scripts/Activate.ps1``
 
 then, run ``ipython kernel install --name "portana" --user``
