@@ -186,7 +186,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
     def get_rebased_index(
         self, mode: Union[Literal["px"], Literal["tr"]], initial_val: float = 100.0
-    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+    ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get a rebased indices of securities and benchmark
 
 
@@ -220,7 +220,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
     def get_returns(
         self, mode: Union[Literal["px"], Literal["tr"]]
-    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+    ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get a returns of securities and benchmark
 
 
@@ -250,7 +250,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
     def get_betas(
         self, mode: Union[Literal["px"], Literal["tr"]]
-    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+    ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get betas of securities and benchmark
 
         Note
@@ -289,7 +289,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
     def get_volatilities(
         self, mode: Union[Literal["px"], Literal["tr"]], adj_factor: int
-    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+    ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get volatilities of securities and benchmark
 
 
@@ -343,7 +343,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
     def get_sharpes(
         self, mode: Union[Literal["px"], Literal["tr"]], adj_factor: int, rfr: float
-    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+    ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get Sharpe ratios of securities and benchmark
 
 

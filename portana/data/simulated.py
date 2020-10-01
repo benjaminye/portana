@@ -2,7 +2,7 @@ from typing import List, Tuple
 
 from . import generator
 from ..abstracts import data
-from ..timeseries import simtimeseries
+from ..timeseries.simtimeseries import SimTimeSeries
 
 
 class SimConnection(data.AbstractConnection):
@@ -67,15 +67,13 @@ class SimEquityAssetType(data.AbstractAssetType):
         self.generator.set_max_distribution(0.005)
         self.generator.set_initial_price_range((1, 1000))
 
-    def get_timeseries(
-        self, date_range: Tuple[str, str], seed: int
-    ) -> data.AbstractTimeSeries:
+    def get_timeseries(self, date_range: Tuple[str, str], seed: int) -> SimTimeSeries:
         """Returns a Timeseries object containing time series data
 
 
         Returns
         -------
-        TimeSeries
+        SimTimeSeries
             Pricing and total returns data for an equity security
         """
 
@@ -86,7 +84,7 @@ class SimEquityAssetType(data.AbstractAssetType):
         prices = self.generator.generate_prices()
         tot_ret_idx = self.generator.generate_tot_ret_idx()
 
-        return simtimeseries.SimTimeSeries(dates, prices, tot_ret_idx)
+        return SimTimeSeries(dates, prices, tot_ret_idx)
 
     def get_description(self, seed: int) -> dict:
         """Get dict of descriptive fields for an equity security
@@ -146,9 +144,7 @@ class SimEquityFundAssetType(data.AbstractAssetType):
         self.generator.set_max_distribution(0.002)
         self.generator.set_initial_price_range((50, 100))
 
-    def get_timeseries(
-        self, date_range: Tuple[str, str], seed: int
-    ) -> data.AbstractTimeSeries:
+    def get_timeseries(self, date_range: Tuple[str, str], seed: int) -> SimTimeSeries:
         """Returns a Timeseries object containing time series data
 
 
@@ -164,7 +160,7 @@ class SimEquityFundAssetType(data.AbstractAssetType):
         prices = self.generator.generate_prices()
         tot_ret_idx = self.generator.generate_tot_ret_idx()
 
-        return simtimeseries.SimTimeSeries(dates, prices, tot_ret_idx)
+        return SimTimeSeries(dates, prices, tot_ret_idx)
 
     def get_description(self, seed: int) -> dict:
         """Get dict of descriptive fields for an equity security
@@ -245,12 +241,12 @@ class SimSecurity(data.AbstractSecurity):
     def __init__(
         self,
         isin: str,
-        timeseries: data.AbstractTimeSeries,
+        timeseries: SimTimeSeries,
         description: dict,
         exposures: dict,
     ):
         self.isin: str = isin
-        self.timeseries: data.AbstractTimeSeries = timeseries
+        self.timeseries: SimTimeSeries = timeseries
         self.description: dict = description
         self.exposures: dict = exposures
         super().__init__()
