@@ -1,0 +1,1459 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Install Dev Environment &mdash; Portana dev documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home" alt="Documentation Home"> Portana
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Install Dev Environment</a></li>
+<li><a class="reference internal" href="#run-demo">Run Demo</a></li>
+<li><a class="reference internal" href="#portana-documentation">Portana Documentation</a><ul>
+<li><a class="reference internal" href="#module-portana.abstracts.data">Portana Abstracts</a></li>
+<li><a class="reference internal" href="#module-portana.data.simulated">Portana Data</a></li>
+<li><a class="reference internal" href="#module-portana.timeseries.analyzerseries">Portana Timeseries</a></li>
+<li><a class="reference internal" href="#module-portana.analyzer.equity_analyzer">Portana Analyzer</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Portana</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Install Dev Environment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="install-dev-environment">
+<h1>Install Dev Environment<a class="headerlink" href="#install-dev-environment" title="Permalink to this headline">¶</a></h1>
+<p>To start a dev environment, make sure you have <a class="reference external" href="https://python-poetry.org/">Poetry</a> installed. Then run:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/benjaminye/portana.git</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">portana</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">install</span></code></div>
+</div>
+</div>
+<div class="section" id="run-demo">
+<h1>Run Demo<a class="headerlink" href="#run-demo" title="Permalink to this headline">¶</a></h1>
+<p>First <code class="docutils literal notranslate"><span class="pre">cd</span></code> into poetry’s virtual environment directory. You can find it via: <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">show</span> <span class="pre">-v</span></code></p>
+<p>on Unix, run: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv-name/Scripts/activate</span></code></p>
+<p>on Windows, run (using Powershell): <code class="docutils literal notranslate"><span class="pre">./venv-name/Scripts/Activate.ps1</span></code></p>
+<p>then, run <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">kernel</span> <span class="pre">install</span> <span class="pre">--name</span> <span class="pre">&quot;portana&quot;</span> <span class="pre">--user</span></code></p>
+</div>
+<div class="section" id="portana-documentation">
+<h1>Portana Documentation<a class="headerlink" href="#portana-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="module-portana.abstracts.data">
+<span id="portana-abstracts"></span><h2>Portana Abstracts<a class="headerlink" href="#module-portana.abstracts.data" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="portana.abstracts.data.AbstractAssetType">
+<em class="property">class </em><code class="sig-prename descclassname">portana.abstracts.data.</code><code class="sig-name descname">AbstractAssetType</code><a class="headerlink" href="#portana.abstracts.data.AbstractAssetType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class to return different data depending on each asset class</p>
+<dl class="py method">
+<dt id="portana.abstracts.data.AbstractAssetType.get_description">
+<em class="property">abstract </em><code class="sig-name descname">get_description</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#portana.abstracts.data.AbstractAssetType.get_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get dict of descriptive fields for specific asset class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict containing each descriptive field for prescribed asset class</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AssetType</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span>
+<span class="go">{&quot;name&quot;: &quot;Apple, Inc.&quot;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.data.AbstractAssetType.get_exposures">
+<em class="property">abstract </em><code class="sig-name descname">get_exposures</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#portana.abstracts.data.AbstractAssetType.get_exposures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get dict of exposure-related fields for specific asset class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict containing each exposure field for prescribed asset class</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AssetType</span><span class="o">.</span><span class="n">get_exposures</span><span class="p">()</span>
+<span class="go">{&quot;currency&quot;: &quot;USD&quot;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.data.AbstractAssetType.get_timeseries">
+<em class="property">abstract </em><code class="sig-name descname">get_timeseries</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><a class="headerlink" href="#portana.abstracts.data.AbstractAssetType.get_timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Timeseries object containing time series data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Pricing data for a security under this asset class</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">AbstractTimeSeries</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="portana.abstracts.data.AbstractConnection">
+<em class="property">class </em><code class="sig-prename descclassname">portana.abstracts.data.</code><code class="sig-name descname">AbstractConnection</code><a class="headerlink" href="#portana.abstracts.data.AbstractConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class for database connections</p>
+<dl class="py method">
+<dt id="portana.abstracts.data.AbstractConnection.get_security">
+<em class="property">abstract </em><code class="sig-name descname">get_security</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">isin</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">date_range</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">portana.abstracts.data.AbstractSecurity</a><a class="headerlink" href="#portana.abstracts.data.AbstractConnection.get_security" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve security and data from database by isin and date_range</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>isin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Security’s ISIN (unique identifier)</p></li>
+<li><p><strong>date_range</strong> (<em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>]</em>) – Date range by which to retrive data from. Should be in “yyyy-mm-dd” format.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Class containing information of the security</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">AbstractSecurity</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="portana.abstracts.data.AbstractSecurity">
+<em class="property">class </em><code class="sig-prename descclassname">portana.abstracts.data.</code><code class="sig-name descname">AbstractSecurity</code><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class containing information pertaining to a security</p>
+<dl class="py attribute">
+<dt id="portana.abstracts.data.AbstractSecurity.isin">
+<code class="sig-name descname">isin</code><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity.isin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Security’s ISIN (unique identifier)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.abstracts.data.AbstractSecurity.timeseries">
+<code class="sig-name descname">timeseries</code><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity.timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Security’s time series data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>TimeSeries</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.abstracts.data.AbstractSecurity.description">
+<code class="sig-name descname">description</code><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Security’s descriptive data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.abstracts.data.AbstractSecurity.exposures">
+<code class="sig-name descname">exposures</code><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity.exposures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Security’s exposure data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.data.AbstractSecurity.get_description">
+<em class="property">abstract </em><code class="sig-name descname">get_description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity.get_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for attribute Security.description</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security’s description fields</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.data.AbstractSecurity.get_exposures">
+<em class="property">abstract </em><code class="sig-name descname">get_exposures</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity.get_exposures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for attribute Security.exposures</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security’s exposure fields</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.data.AbstractSecurity.get_isin">
+<em class="property">abstract </em><code class="sig-name descname">get_isin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity.get_isin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for attribute Security.isin</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security’s ISIN (unique identifier)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.data.AbstractSecurity.get_timeseries">
+<em class="property">abstract </em><code class="sig-name descname">get_timeseries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portana.abstracts.data.AbstractSecurity.get_timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for attribute Security.timeseries</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security’s time series data</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">AbstractTimeSeries</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-portana.abstracts.timeseries"></span><dl class="py class">
+<dt id="portana.abstracts.timeseries.AbstractTimeSeries">
+<em class="property">class </em><code class="sig-prename descclassname">portana.abstracts.timeseries.</code><code class="sig-name descname">AbstractTimeSeries</code><a class="headerlink" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class for time series representation used in this package</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class supports indexing by date. User can pass in date(s) in following ways:</p>
+<dl class="simple">
+<dt>TimeSeries[str] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on that date</p>
+</dd>
+<dt>TimeSeries[List[str]] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on dates in list</p>
+</dd>
+<dt>TimeSeries[begin:end:step] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on and between
+begin and end dates, with prescribed step size</p>
+</dd>
+</dl>
+</div>
+<dl class="py method">
+<dt id="portana.abstracts.timeseries.AbstractTimeSeries.get_data">
+<em class="property">abstract </em><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">, </span>Tuple<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span><a class="headerlink" href="#portana.abstracts.timeseries.AbstractTimeSeries.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a numpy array(s) containing data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of data contained in this object (excluding dates)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.timeseries.AbstractTimeSeries.get_dates">
+<em class="property">abstract </em><code class="sig-name descname">get_dates</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><a class="headerlink" href="#portana.abstracts.timeseries.AbstractTimeSeries.get_dates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a numpy array of dates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of dates contained in this object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.timeseries.AbstractTimeSeries.to_df">
+<em class="property">abstract </em><code class="sig-name descname">to_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#portana.abstracts.timeseries.AbstractTimeSeries.to_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a pandas DataFrame object representing data contained in this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataFrame representation of this object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.2)">pandas.DataFrame</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-portana.abstracts.analyzer"></span><dl class="py class">
+<dt id="portana.abstracts.analyzer.AbstractAnalyzer">
+<em class="property">class </em><code class="sig-prename descclassname">portana.abstracts.analyzer.</code><code class="sig-name descname">AbstractAnalyzer</code><a class="headerlink" href="#portana.abstracts.analyzer.AbstractAnalyzer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class to analyze a Security</p>
+<dl class="py method">
+<dt id="portana.abstracts.analyzer.AbstractAnalyzer.add_security">
+<em class="property">abstract </em><code class="sig-name descname">add_security</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">security</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">portana.abstracts.data.AbstractSecurity</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portana.abstracts.analyzer.AbstractAnalyzer.add_security" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a security to analyze</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>security</strong> (<a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity"><em>AbstractSecurity</em></a>) – Security object to analyze</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.abstracts.analyzer.AbstractAnalyzer.set_comp_index">
+<em class="property">abstract </em><code class="sig-name descname">set_comp_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comp_index</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">portana.abstracts.data.AbstractSecurity</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portana.abstracts.analyzer.AbstractAnalyzer.set_comp_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a benchmark to analyze agains
+Also used for calculations such as beta</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>security</strong> (<a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity"><em>AbstractSecurity</em></a>) – Security object containing the benchmark</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-portana.data.simulated">
+<span id="portana-data"></span><h2>Portana Data<a class="headerlink" href="#module-portana.data.simulated" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="portana.data.simulated.Equity">
+<em class="property">class </em><code class="sig-prename descclassname">portana.data.simulated.</code><code class="sig-name descname">Equity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">isin</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">timeseries</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a></span></em>, <em class="sig-param"><span class="n">description</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em>, <em class="sig-param"><span class="n">exposures</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portana.data.simulated.Equity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to represent an equity security.
+Child of Security class.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="portana.data.simulated.EquityFund">
+<em class="property">class </em><code class="sig-prename descclassname">portana.data.simulated.</code><code class="sig-name descname">EquityFund</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">isin</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">timeseries</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a></span></em>, <em class="sig-param"><span class="n">description</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em>, <em class="sig-param"><span class="n">exposures</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portana.data.simulated.EquityFund" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to represent an equity fund.
+Child of Security class.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="portana.data.simulated.SimConnection">
+<em class="property">class </em><code class="sig-prename descclassname">portana.data.simulated.</code><code class="sig-name descname">SimConnection</code><a class="headerlink" href="#portana.data.simulated.SimConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulated connection to a database.
+A concrete implementation of AbstractConnection class.</p>
+<dl class="py method">
+<dt id="portana.data.simulated.SimConnection.get_security">
+<code class="sig-name descname">get_security</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">isin</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">date_range</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">portana.abstracts.data.AbstractSecurity</a><a class="headerlink" href="#portana.data.simulated.SimConnection.get_security" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a simulated Security by ISIN and date range</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>isin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – </p></li>
+<li><p><strong>date_range</strong> (<em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A Security object containing all data relavent to requested security</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Security</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimConnection.set_asset_type">
+<code class="sig-name descname">set_asset_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asset_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#portana.abstracts.data.AbstractAssetType" title="portana.abstracts.data.AbstractAssetType">portana.abstracts.data.AbstractAssetType</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portana.data.simulated.SimConnection.set_asset_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the connection to retrieve a security in particular asset class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>asset_type</strong> (<a class="reference internal" href="#portana.abstracts.data.AbstractAssetType" title="portana.abstracts.data.AbstractAssetType"><em>AbstractAssetType</em></a>) – AssetType class which contains methods necessary to
+retrieve simulated data unique to each asset class</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="portana.data.simulated.SimEquityAssetType">
+<em class="property">class </em><code class="sig-prename descclassname">portana.data.simulated.</code><code class="sig-name descname">SimEquityAssetType</code><a class="headerlink" href="#portana.data.simulated.SimEquityAssetType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to return simulated data for an equity security.
+A concrete implementation of AbstractAssetType.</p>
+<dl class="py method">
+<dt id="portana.data.simulated.SimEquityAssetType.get_description">
+<code class="sig-name descname">get_description</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#portana.data.simulated.SimEquityAssetType.get_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get dict of descriptive fields for an equity security</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict containing each descriptive field for an equity security</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AssetType</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span>
+<span class="go">{&quot;name&quot;: &quot;Apple, Inc.&quot;, ...}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimEquityAssetType.get_exposures">
+<code class="sig-name descname">get_exposures</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#portana.data.simulated.SimEquityAssetType.get_exposures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get dict of exposure-related fields for an equity security</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict containing each exposure field for an equity security</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AssetType</span><span class="o">.</span><span class="n">get_exposures</span><span class="p">()</span>
+<span class="go">{&quot;geography&quot;: &quot;Canada&quot;, ...}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimEquityAssetType.get_timeseries">
+<code class="sig-name descname">get_timeseries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">date_range</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><a class="headerlink" href="#portana.data.simulated.SimEquityAssetType.get_timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Timeseries object containing time series data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Pricing and total returns data for an equity security</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>TimeSeries</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="portana.data.simulated.SimEquityFundAssetType">
+<em class="property">class </em><code class="sig-prename descclassname">portana.data.simulated.</code><code class="sig-name descname">SimEquityFundAssetType</code><a class="headerlink" href="#portana.data.simulated.SimEquityFundAssetType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to return simulated data for an equity fund.
+A concrete implementation of AbstractAssetType.</p>
+<dl class="py method">
+<dt id="portana.data.simulated.SimEquityFundAssetType.get_description">
+<code class="sig-name descname">get_description</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#portana.data.simulated.SimEquityFundAssetType.get_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get dict of descriptive fields for an equity security</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict containing each descriptive field for an equity security</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AssetType</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span>
+<span class="go">{&quot;fee&quot;: &quot;0.015&quot;, ...}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimEquityFundAssetType.get_exposures">
+<code class="sig-name descname">get_exposures</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#portana.data.simulated.SimEquityFundAssetType.get_exposures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get dict of exposure-related fields for an equity fund</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict containing each exposure field for an equity fund</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">AssetType</span><span class="o">.</span><span class="n">get_exposures</span><span class="p">()</span>
+<span class="go">{&quot;geography&quot;: &quot;Canada&quot;, ...}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimEquityFundAssetType.get_timeseries">
+<code class="sig-name descname">get_timeseries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">date_range</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><a class="headerlink" href="#portana.data.simulated.SimEquityFundAssetType.get_timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Timeseries object containing time series data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Pricing and total returns data for an equity fund</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>TimeSeries</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="portana.data.simulated.SimSecurity">
+<em class="property">class </em><code class="sig-prename descclassname">portana.data.simulated.</code><code class="sig-name descname">SimSecurity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">isin</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">timeseries</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a></span></em>, <em class="sig-param"><span class="n">description</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em>, <em class="sig-param"><span class="n">exposures</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portana.data.simulated.SimSecurity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class containing information pertaining to a security.
+A concrete implementation of AbstractSecurity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>isin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Security’s ISIN (unique identifier)</p></li>
+<li><p><strong>timeseries</strong> (<a class="reference internal" href="#portana.timeseries.simtimeseries.SimTimeSeries" title="portana.timeseries.simtimeseries.SimTimeSeries"><em>SimTimeSeries</em></a>) – Security’s time series data</p></li>
+<li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – Security’s descriptive data</p></li>
+<li><p><strong>exposures</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – Security’s exposure data</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="portana.data.simulated.SimSecurity.isin">
+<code class="sig-name descname">isin</code><a class="headerlink" href="#portana.data.simulated.SimSecurity.isin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Security’s ISIN (unique identifier)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.data.simulated.SimSecurity.timeseries">
+<code class="sig-name descname">timeseries</code><a class="headerlink" href="#portana.data.simulated.SimSecurity.timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Security’s time series data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#portana.timeseries.simtimeseries.SimTimeSeries" title="portana.timeseries.simtimeseries.SimTimeSeries">SimTimeSeries</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.data.simulated.SimSecurity.description">
+<code class="sig-name descname">description</code><a class="headerlink" href="#portana.data.simulated.SimSecurity.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Security’s descriptive data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.data.simulated.SimSecurity.exposures">
+<code class="sig-name descname">exposures</code><a class="headerlink" href="#portana.data.simulated.SimSecurity.exposures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Security’s exposure data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimSecurity.get_description">
+<code class="sig-name descname">get_description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portana.data.simulated.SimSecurity.get_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for attribute Security.description</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security’s description fields</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimSecurity.get_exposures">
+<code class="sig-name descname">get_exposures</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portana.data.simulated.SimSecurity.get_exposures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for attribute Security.exposures</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security’s exposure fields</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimSecurity.get_isin">
+<code class="sig-name descname">get_isin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portana.data.simulated.SimSecurity.get_isin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for attribute Security.isin</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security’s ISIN (unique identifier)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.simulated.SimSecurity.get_timeseries">
+<code class="sig-name descname">get_timeseries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#portana.data.simulated.SimSecurity.get_timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for attribute Security.timeseries</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security’s time series data</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#portana.timeseries.simtimeseries.SimTimeSeries" title="portana.timeseries.simtimeseries.SimTimeSeries">SimTimeSeries</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-portana.data.generator"></span><dl class="py class">
+<dt id="portana.data.generator.Generator">
+<em class="property">class </em><code class="sig-prename descclassname">portana.data.generator.</code><code class="sig-name descname">Generator</code><a class="headerlink" href="#portana.data.generator.Generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class used for generating random data.
+This is used by simulated module to generate random data.</p>
+<dl class="py attribute">
+<dt id="portana.data.generator.Generator.seed">
+<code class="sig-name descname">seed</code><a class="headerlink" href="#portana.data.generator.Generator.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seed for random number generator
+It is recommended for simulated module to use
+ISIN for seed so that return data stay the same</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.data.generator.Generator.max_drift">
+<code class="sig-name descname">max_drift</code><a class="headerlink" href="#portana.data.generator.Generator.max_drift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum mean return used by random.normal to
+generate random return data for buiding price time series</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.data.generator.Generator.max_vol">
+<code class="sig-name descname">max_vol</code><a class="headerlink" href="#portana.data.generator.Generator.max_vol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum standard deviation used by random.normal
+to generate random return data for building price time series</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.data.generator.Generator.max_distribution">
+<code class="sig-name descname">max_distribution</code><a class="headerlink" href="#portana.data.generator.Generator.max_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum added return to price time series to create total return index
+time series</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.data.generator.Generator.date_range">
+<code class="sig-name descname">date_range</code><a class="headerlink" href="#portana.data.generator.Generator.date_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Date range to generate simulated data from
+Example: [“2001-01-01”, “2005-01-01”]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.data.generator.Generator.initial_price_range">
+<code class="sig-name descname">initial_price_range</code><a class="headerlink" href="#portana.data.generator.Generator.initial_price_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Range of desired initial price, used by random.uniform
+to set an initial price</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Setting up a Generator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">set_max_drift</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">set_max_vol</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">set_max_distribution</span><span class="p">(</span><span class="mf">0.005</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">set_date_range</span><span class="p">([</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-02-01&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">set_initial_price_range</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Make sure to set seed last</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">412843</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Using Generator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">generate_dates</span><span class="p">()</span>
+<span class="go">numpy.ndarray</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">generate_prices</span><span class="p">()</span>
+<span class="go">numpy.ndarray</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">generator</span><span class="o">.</span><span class="n">generate_sector</span><span class="p">()</span>
+<span class="go">&quot;Technology&quot;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_dates">
+<code class="sig-name descname">generate_dates</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><a class="headerlink" href="#portana.data.generator.Generator.generate_dates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a numpy array of dates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of dates set from set_date_range(date_range)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_fee">
+<code class="sig-name descname">generate_fee</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><a class="headerlink" href="#portana.data.generator.Generator.generate_fee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random fee</p>
+<p>Currently setup to return a float
+between 0 and 0.02</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Amount of fees</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_geography">
+<code class="sig-name descname">generate_geography</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="headerlink" href="#portana.data.generator.Generator.generate_geography" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate geography</p>
+<p>Currently setup to randomly choose between
+United States and Canada</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Geography</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_name">
+<code class="sig-name descname">generate_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="headerlink" href="#portana.data.generator.Generator.generate_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate security name</p>
+<p>Currently set up to output “Simulated Security {seed}”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Security name</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_prices">
+<code class="sig-name descname">generate_prices</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><a class="headerlink" href="#portana.data.generator.Generator.generate_prices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a price time series</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of prices</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_risk">
+<code class="sig-name descname">generate_risk</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="headerlink" href="#portana.data.generator.Generator.generate_risk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate risk profile</p>
+<p>Currently setup to randomly choose betwenn
+High, Medium, and Low</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Risk Profile</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_sector">
+<code class="sig-name descname">generate_sector</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="headerlink" href="#portana.data.generator.Generator.generate_sector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random sector</p>
+<p>Currently set up to randomly choose between
+Technology, Industrials, and Financials</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Sector</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_strategy">
+<code class="sig-name descname">generate_strategy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="headerlink" href="#portana.data.generator.Generator.generate_strategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a strategy</p>
+<p>Currently setup to randomly choose between
+Growth, Income, Value, and Balanced</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Strategy</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_ticker">
+<code class="sig-name descname">generate_ticker</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="headerlink" href="#portana.data.generator.Generator.generate_ticker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random ticker</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Ticker</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.generate_tot_ret_idx">
+<code class="sig-name descname">generate_tot_ret_idx</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><a class="headerlink" href="#portana.data.generator.Generator.generate_tot_ret_idx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a total returns index time series</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of total returns index</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.set_date_range">
+<code class="sig-name descname">set_date_range</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">date_range</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#portana.data.generator.Generator.set_date_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setter for date_range</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>date_range</strong> (<em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>]</em>) – Date range from which to generate time series data
+Example: (“2020-01-01”, “2020-02-01”)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.set_initial_price_range">
+<code class="sig-name descname">set_initial_price_range</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">price_range</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#portana.data.generator.Generator.set_initial_price_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setter for initial_price_range</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>price_range</strong> (<em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>]</em>) – Initial price range of the security</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.set_max_distribution">
+<code class="sig-name descname">set_max_distribution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_distribution</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#portana.data.generator.Generator.set_max_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setter for max_distribution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>max_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Maximum additional return tacked onto returns series
+generated by get_prices() to generate get_tot_ret_idx()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.set_max_drift">
+<code class="sig-name descname">set_max_drift</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_drift</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#portana.data.generator.Generator.set_max_drift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setter for max_drift</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>max_drift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Maximum average returns allowed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.set_max_vol">
+<code class="sig-name descname">set_max_vol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_vol</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#portana.data.generator.Generator.set_max_vol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setter for max_vol</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>max_vol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Maximum standard deviation of returns allowed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.data.generator.Generator.set_seed">
+<code class="sig-name descname">set_seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#portana.data.generator.Generator.set_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setter method for seed</p>
+<p>Sets seed, then runs a routine to
+set private attributes according to the seed set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The seed with which to feed into random number generator</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-portana.timeseries.analyzerseries">
+<span id="portana-timeseries"></span><h2>Portana Timeseries<a class="headerlink" href="#module-portana.timeseries.analyzerseries" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="portana.timeseries.analyzerseries.AnalyzerSeries">
+<em class="property">class </em><code class="sig-prename descclassname">portana.timeseries.analyzerseries.</code><code class="sig-name descname">AnalyzerSeries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dates</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em>, <em class="sig-param"><span class="n">results</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em>, <em class="sig-param"><span class="n">col_names</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for time series representation for ouputs from Anlyzer classes.
+A concrete implementation of AbstractTimeSeries</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dates</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Numpy array containing dates,
+must be the same length (# of rows) as other parameters passed in</p></li>
+<li><p><strong>results</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Numpy array containing output of Analyzer results,
+must be the same length (# of rows) as other parameters passed in</p></li>
+<li><p><strong>col_names</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>]</em>) – Column names used by to_df() to construct a DataFrame</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class supports indexing by date. User can pass in date(s) in following ways:</p>
+<dl class="simple">
+<dt>TimeSeries[str] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on that date</p>
+</dd>
+<dt>TimeSeries[List[str]] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on dates in list</p>
+</dd>
+<dt>TimeSeries[begin:end:step] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on and between
+begin and end dates, with prescribed step size</p>
+</dd>
+</dl>
+</div>
+<dl class="py method">
+<dt id="portana.timeseries.analyzerseries.AnalyzerSeries.get_data">
+<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><a class="headerlink" href="#portana.timeseries.analyzerseries.AnalyzerSeries.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a numpy array(s) containing data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of data contained in this object (excluding dates)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.timeseries.analyzerseries.AnalyzerSeries.get_dates">
+<code class="sig-name descname">get_dates</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><a class="headerlink" href="#portana.timeseries.analyzerseries.AnalyzerSeries.get_dates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a numpy array of dates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of dates contained in this object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.timeseries.analyzerseries.AnalyzerSeries.to_df">
+<code class="sig-name descname">to_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#portana.timeseries.analyzerseries.AnalyzerSeries.to_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a pandas DataFrame object representing data contained in this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataFrame representation of this object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.2)">pandas.DataFrame</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-portana.timeseries.simtimeseries"></span><dl class="py class">
+<dt id="portana.timeseries.simtimeseries.SimTimeSeries">
+<em class="property">class </em><code class="sig-prename descclassname">portana.timeseries.simtimeseries.</code><code class="sig-name descname">SimTimeSeries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dates</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em>, <em class="sig-param"><span class="n">prices</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em>, <em class="sig-param"><span class="n">tot_ret_idx</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#portana.timeseries.simtimeseries.SimTimeSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for representation of securities time series</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dates</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Numpy array containing dates,
+must be the same size as other parameters passed in</p></li>
+<li><p><strong>prices</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Numpy array containing prices,
+must be the same size as other parameters passed in</p></li>
+<li><p><strong>tot_ret_idx</strong> (<em>np.ndarray</em>) – Numpy array containing total return index,
+must be the same size as other parameters passed in</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class supports indexing by date. User can pass in date(s) in following ways:</p>
+<dl class="simple">
+<dt>TimeSeries[str] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on that date</p>
+</dd>
+<dt>TimeSeries[List[str]] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on dates in list</p>
+</dd>
+<dt>TimeSeries[begin:end:step] -&gt; AbstractTimeSeries:</dt><dd><p>Returns TimeSeries object containing data on and between
+begin and end dates, with prescribed step size</p>
+</dd>
+</dl>
+</div>
+<dl class="py method">
+<dt id="portana.timeseries.simtimeseries.SimTimeSeries.get_data">
+<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><a class="headerlink" href="#portana.timeseries.simtimeseries.SimTimeSeries.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a numpy array(s) containing data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of data contained in this object (excluding dates)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.timeseries.simtimeseries.SimTimeSeries.get_dates">
+<code class="sig-name descname">get_dates</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><a class="headerlink" href="#portana.timeseries.simtimeseries.SimTimeSeries.get_dates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a numpy array of dates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Numpy array of dates contained in this object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.timeseries.simtimeseries.SimTimeSeries.to_df">
+<code class="sig-name descname">to_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#portana.timeseries.simtimeseries.SimTimeSeries.to_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a pandas DataFrame object representing data contained in this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataFrame representation of this object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.2)">pandas.DataFrame</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-portana.analyzer.equity_analyzer">
+<span id="portana-analyzer"></span><h2>Portana Analyzer<a class="headerlink" href="#module-portana.analyzer.equity_analyzer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer">
+<em class="property">class </em><code class="sig-prename descclassname">portana.analyzer.equity_analyzer.</code><code class="sig-name descname">EquityAnalyzer</code><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to analyze equity-like securities</p>
+<dl class="py attribute">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.securities">
+<code class="sig-name descname">securities</code><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.securities" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of securities to analyze</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">AbstractSecurity</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.comp_index">
+<code class="sig-name descname">comp_index</code><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.comp_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Benchmark to be compared against</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">AbstractSecurity</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.add_security">
+<code class="sig-name descname">add_security</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">security</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">portana.abstracts.data.AbstractSecurity</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.add_security" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a Security to analyze</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>security</strong> (<a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity"><em>AbstractSecurity</em></a>) – A Security to be analyzed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.get_betas">
+<code class="sig-name descname">get_betas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Literal<span class="p">[</span>px<span class="p">]</span><span class="p">, </span>Literal<span class="p">[</span>tr<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">, </span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">]</span><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.get_betas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get betas of securities and benchmark</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Beta of benchmark against benchmark will always be 1</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – “px” for price returns, “tr” for total returns</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tuple containing two AnalyzerSeries of betas for securities and comp_index</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>, <a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.get_rebased_index">
+<code class="sig-name descname">get_rebased_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Literal<span class="p">[</span>px<span class="p">]</span><span class="p">, </span>Literal<span class="p">[</span>tr<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">initial_val</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span> <span class="o">=</span> <span class="default_value">100.0</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">, </span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">]</span><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.get_rebased_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a rebased indices of securities and benchmark</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – “px” for index built on prices, “tr” for total returns index</p></li>
+<li><p><strong>initial_val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Initial value of rebased index, defaults to 100</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tuple containing two AnalyzerSeries of rebased indices for securities and comp_index</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>, <a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.get_returns">
+<code class="sig-name descname">get_returns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Literal<span class="p">[</span>px<span class="p">]</span><span class="p">, </span>Literal<span class="p">[</span>tr<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">, </span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">]</span><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.get_returns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a returns of securities and benchmark</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – “px” for price returns, “tr” for total returns</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tuple containing two AnalyzerSeries of returns for securities and comp_index</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>, <a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.get_sharpes">
+<code class="sig-name descname">get_sharpes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Literal<span class="p">[</span>px<span class="p">]</span><span class="p">, </span>Literal<span class="p">[</span>tr<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">adj_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">rfr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">, </span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">]</span><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.get_sharpes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Sharpe ratios of securities and benchmark</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – “px” for price returns, “tr” for total returns</p></li>
+<li><p><strong>adj_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Adjustment factor to annualize volatility</p></li>
+<li><p><strong>rfr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Risk free rate</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>adj_factor should depend on the frequency of data:</p>
+<ul class="simple">
+<li><p>Daily: 252 (number of trading days in a year)</p></li>
+<li><p>Weekly: 52</p></li>
+<li><p>Monthly: 12</p></li>
+<li><p>Quarterly: 4</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple containing two AnalyzerSeries of Sharpe ratios for securities and comp_index</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Tuple[<a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>, <a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.get_volatilities">
+<code class="sig-name descname">get_volatilities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Literal<span class="p">[</span>px<span class="p">]</span><span class="p">, </span>Literal<span class="p">[</span>tr<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">adj_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">, </span><a class="reference internal" href="#portana.abstracts.timeseries.AbstractTimeSeries" title="portana.abstracts.timeseries.AbstractTimeSeries">portana.abstracts.timeseries.AbstractTimeSeries</a><span class="p">]</span><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.get_volatilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get volatilities of securities and benchmark</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – “px” for price returns, “tr” for total returns</p></li>
+<li><p><strong>adj_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – <dl class="simple">
+<dt>Adjustment factor to annualize volatility. Depending on data frequency…</dt><dd><p>Daily: 252 (number of trading days)
+Weekly: 52
+Monthly: 12
+Quarterly: 4</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tuple containing two AnalyzerSeries of volatilities for securities and comp_index</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>, <a class="reference internal" href="#portana.timeseries.analyzerseries.AnalyzerSeries" title="portana.timeseries.analyzerseries.AnalyzerSeries">AnalyzerSeries</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="portana.analyzer.equity_analyzer.EquityAnalyzer.set_comp_index">
+<code class="sig-name descname">set_comp_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comp_index</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity">portana.abstracts.data.AbstractSecurity</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#portana.analyzer.equity_analyzer.EquityAnalyzer.set_comp_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a benchmark to compare against
+Also used for beta calculations</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Right now, this is optional as first time a security is added
+through add_security(security), comp_index will be set to that</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>security</strong> (<a class="reference internal" href="#portana.abstracts.data.AbstractSecurity" title="portana.abstracts.data.AbstractSecurity"><em>AbstractSecurity</em></a>) – A Security containing benchmark to be compared against</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Benjamin Ye
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
