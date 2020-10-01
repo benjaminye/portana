@@ -6,16 +6,8 @@ from ..timeseries import simtimeseries
 
 
 class SimConnection(data.AbstractConnection):
-    """Simulated connection to a database
-    A concrete implementation of AbstractConnection class
-
-
-    Methods
-    -------
-    set_asset_type(asset_type: AssetType)
-        Sets the connection to retrieve a security in particular asset class
-    get_security(isin: str, date_range: Tuple[str, str])
-        Returns a simulated Security by ISIN and date range
+    """Simulated connection to a database.
+    A concrete implementation of AbstractConnection class.
     """
 
     def __init__(self):
@@ -27,8 +19,8 @@ class SimConnection(data.AbstractConnection):
 
         Parameters
         -------
-        asset_type: AssetType
-            An AssetType class which contains methods necessary to
+        asset_type: AbstractAssetType
+            AssetType class which contains methods necessary to
             retrieve simulated data unique to each asset class
         """
         self._asset_type = asset_type
@@ -64,19 +56,8 @@ class SimConnection(data.AbstractConnection):
 
 
 class SimEquityAssetType(data.AbstractAssetType):
-    """Class to return simulated data for an equity security
-
-
-    Methods
-    -------
-    get_description() -> dict
-        dict of descriptive fields for an equity security
-        Example: {"name": "Apple, Inc", ...}
-    get_exposures() -> dict
-        dict of exposure fields for an equity security
-        Example: {"geography": "Canada", ...}
-    get_timeseries() -> TimeSeries
-        generates a TimeSeries of equity security's prices and total returns
+    """Class to return simulated data for an equity security.
+    A concrete implementation of AbstractAssetType.
     """
 
     def __init__(self):
@@ -155,23 +136,8 @@ class SimEquityAssetType(data.AbstractAssetType):
 
 
 class SimEquityFundAssetType(data.AbstractAssetType):
-    """Class to return simulated data for an equity fund
-    A concrete implementation of AbstractAssetType
-
-
-    Methods
-    -------
-    get_description() -> dict
-        dict of descriptive fields for an equity fund
-        Example: {"fee": "0.015", ...}
-
-    get_exposures() -> dict
-        dict of exposure fields for an equity fund
-        Example: {"Geography": "United States", ...}
-
-    get_timeseries() -> TimeSeries
-        generates a TimeSeries of equity fund's prices and total returns
-    """
+    """Class to return simulated data for an equity fund.
+    A concrete implementation of AbstractAssetType."""
 
     def __init__(self):
         self.generator = generator.Generator()
@@ -248,15 +214,15 @@ class SimEquityFundAssetType(data.AbstractAssetType):
         return exposures
 
 
-class Security(data.AbstractSecurity):
-    """Class containing information pertaining to a security
-    A concrete implementation of AbstractSecurity
+class SimSecurity(data.AbstractSecurity):
+    """Class containing information pertaining to a security.
+    A concrete implementation of AbstractSecurity.
 
     Parameters
     -------
     isin: str
         Security's ISIN (unique identifier)
-    timeseries: TimeSeries
+    timeseries: SimTimeSeries
         Security's time series data
     description: dict
         Security's descriptive data
@@ -268,24 +234,12 @@ class Security(data.AbstractSecurity):
     -------
     isin: str
         Security's ISIN (unique identifier)
-    timeseries: TimeSeries
+    timeseries: SimTimeSeries
         Security's time series data
     description: dict
         Security's descriptive data
     exposures: dict
         Security's exposure data
-
-
-    Methods
-    -------
-    get_isin() -> str
-        getter for attribute Security.isin
-    get_timeseries() -> TimeSeries
-        getter for attribute Security.timeseries
-    get_description() -> dict
-        getter for attribute Security.description
-    get_exposures() -> dict
-        getter for attribute Security.exposures
     """
 
     def __init__(
@@ -332,7 +286,7 @@ class Security(data.AbstractSecurity):
 
         Returns
         -------
-        TimeSeries
+        SimTimeSeries
             Security's time series data
         """
         return self.timeseries
@@ -358,17 +312,17 @@ class Security(data.AbstractSecurity):
         return self.exposures
 
 
-class Equity(Security):
-    """Class to represent an equity security
-    Child of Security class
+class Equity(SimSecurity):
+    """Class to represent an equity security.
+    Child of Security class.
     """
 
     pass
 
 
-class EquityFund(Security):
-    """Class to represent an equity fund
-    Child of Security class
+class EquityFund(SimSecurity):
+    """Class to represent an equity fund.
+    Child of Security class.
     """
 
     pass

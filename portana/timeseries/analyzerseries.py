@@ -7,30 +7,34 @@ from ..abstracts import timeseries
 
 
 class AnalyzerSeries(timeseries.AbstractTimeSeries):
-    """Class for time series representation for ouputs from Anlyzer classes
+    """Class for time series representation for ouputs from Anlyzer classes.
     A concrete implementation of AbstractTimeSeries
 
-    Methods
-    -------
-    to_df() -> pandas.DataFrame
-        Returns a pandas DataFrame object representing outputs
-    get_dates() -> numpy.ndarray
-        Returns a numpy array of dates
-    get_data() -> Union[numpy.ndarray, Tuple[numpy.ndarray]]
-        Returns a numpy array of outputs (excluding dates)
 
-    Notes
+    Parameters
     -------
-    This class supports indexing by date.
+    dates: numpy.ndarray
+        Numpy array containing dates,
+        must be the same length (# of rows) as other parameters passed in
+    results: numpy.ndarray
+        Numpy array containing output of Analyzer results,
+        must be the same length (# of rows) as other parameters passed in
+    col_names: List[str]
+        Column names used by to_df() to construct a DataFrame
 
-    User can pass in date(s) in following ways:
-    TimeSeries[str] -> TimeSeries:
-        returns TimeSeries object containing data on that date
-    TimeSeries[List[str]] -> TimeSeries:
-        returns TimeSeries object containing data on dates in list
-    TimeSeries[begin:end:step] -> TimeSeries:
-        returns TimeSeries object containing data on and between
-        begin and end dates, with prescribed step size
+
+    Note
+    -------
+    This class supports indexing by date. User can pass in date(s) in following ways:
+
+
+        TimeSeries[str] -> AbstractTimeSeries:
+            Returns TimeSeries object containing data on that date
+        TimeSeries[List[str]] -> AbstractTimeSeries:
+            Returns TimeSeries object containing data on dates in list
+        TimeSeries[begin:end:step] -> AbstractTimeSeries:
+            Returns TimeSeries object containing data on and between
+            begin and end dates, with prescribed step size
     """
 
     def __init__(self, dates: np.ndarray, results: np.ndarray, col_names: List[str]):

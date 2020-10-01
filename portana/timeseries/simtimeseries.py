@@ -9,29 +9,30 @@ from ..abstracts import timeseries
 class SimTimeSeries(timeseries.AbstractTimeSeries):
     """Class for representation of securities time series
 
-
-    Methods
+    Parameters
     -------
-    to_df() -> pandas.DataFrame
-        Returns a pandas DataFrame object representing data
-    get_dates() -> numpy.ndarray
-        Returns a numpy array of dates
-    get_data() -> Union[numpy.ndarray, Tuple[numpy.ndarray]]
-        Returns a numpy array of data (excluding dates)
+    dates: numpy.ndarray
+        Numpy array containing dates,
+        must be the same size as other parameters passed in
+    prices: numpy.ndarray
+        Numpy array containing prices,
+        must be the same size as other parameters passed in
+    tot_ret_idx: np.ndarray
+        Numpy array containing total return index,
+        must be the same size as other parameters passed in
 
-
-    Notes
+    Note
     -------
-    This class supports indexing by date.
+    This class supports indexing by date. User can pass in date(s) in following ways:
 
-    User can pass in date(s) in following ways:
-    TimeSeries[str] -> TimeSeries:
-        returns TimeSeries object containing data on that date
-    TimeSeries[List[str]] -> TimeSeries:
-        returns TimeSeries object containing data on dates in list
-    TimeSeries[begin:end:step] -> TimeSeries:
-        returns TimeSeries object containing data on and between
-        begin and end dates, with prescribed step size
+
+        TimeSeries[str] -> AbstractTimeSeries:
+            Returns TimeSeries object containing data on that date
+        TimeSeries[List[str]] -> AbstractTimeSeries:
+            Returns TimeSeries object containing data on dates in list
+        TimeSeries[begin:end:step] -> AbstractTimeSeries:
+            Returns TimeSeries object containing data on and between
+            begin and end dates, with prescribed step size
     """
 
     def __init__(self, dates: np.ndarray, prices: np.ndarray, tot_ret_idx: np.ndarray):

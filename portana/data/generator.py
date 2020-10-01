@@ -9,7 +9,7 @@ import numpy as np
 Used by AssetClass class to retrieve data specific
 for each asset class
 
-To Do
+Todo
 -------
 -   Seperate into different classes for
     different AssetClass
@@ -17,9 +17,8 @@ To Do
 
 
 class Generator:
-    """Class used for generating random data
-
-    This is used by simulated module to generate random data
+    """Class used for generating random data.
+    This is used by simulated module to generate random data.
 
 
     Attributes
@@ -45,51 +44,19 @@ class Generator:
         to set an initial price
 
 
-    Methods
-    -------
-    set_seed(seed:int)
-        Setter method for seed
-    set_max_drift(max_drift: float)
-        Setter for max_drift
-    set_max_vol(max_vol: float)
-        Setter for max_vol
-    set_distribution(max_vol: float)
-        Setter for max_vol
-    set_max_vol(max_vol: float)
-        Setter for max_vol
-    set_max_vol(max_vol: float)
-        Setter for max_vol
-    generate_dates() -> numpy.ndarray
-        Generate a numpy array of dates
-    generate_prices() -> numpy.ndarray
-        Generate a price time series
-    generate_tot_ret_idx() -> numpy.ndarray
-        Generate a total return index series
-    generate_name() -> str
-        Generate security's name
-    generate_ticker() -> str
-        Generate security's ticker
-    generate_fee() -> float
-        Generate security's fee
-    generate_sector() -> str
-        Generate security's sector
-    generate_geography() -> str
-        Generate security's geography
-    generate_strategy() -> str
-        Generate security's strategy
-    generate_risk() -> str
-        Generate security's risk level
-
     Example
     -------
+    >>> # Setting up a Generator
     >>> generator = Generator()
-    >>> generator.set_seed(412843)
     >>> generator.set_max_drift(0.01)
     >>> generator.set_max_vol(0.05)
     >>> generator.set_max_distribution(0.005)
     >>> generator.set_date_range(["2020-01-01", "2020-02-01"])
     >>> generator.set_initial_price_range([5, 100])
+    >>> # Make sure to set seed last
+    >>> generator.set_seed(412843)
 
+    >>> # Using Generator
     >>> generator.generate_dates()
     numpy.ndarray
     >>> generator.generate_prices()
@@ -115,8 +82,8 @@ class Generator:
     def set_seed(self, seed: int) -> None:
         """Setter method for seed
 
-        Sets seed, then runs a routine to generate
-        set private attributes according to the seed set
+        Sets seed, then runs a routine to
+        set private attributes according to the seed set.
 
 
         Parameters
@@ -268,7 +235,7 @@ class Generator:
         Returns
         -------
         str
-            security name
+            Security name
         """
         return f"Simulated Security {self.seed}"
 

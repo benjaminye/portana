@@ -9,20 +9,7 @@ from .timeseries import AbstractTimeSeries
 
 
 class AbstractAssetType(ABC):
-    """Abstract class to return different data depending on each asset class
-
-
-    Methods
-    -------
-    get_description() -> dict
-        dict of descriptive fields for specific asset class
-        Example: {"name": "Apple, Inc"}
-    get_exposures() -> dict
-        dict of exposure fields for specific asset class
-        Example: {"currency": "USD"}
-    get_timeseries() -> TimeSeries
-        generates a TimeSeries of security's prices within that asset class
-    """
+    """Abstract class to return different data depending on each asset class"""
 
     @abstractmethod
     def get_timeseries(self) -> AbstractTimeSeries:
@@ -31,7 +18,7 @@ class AbstractAssetType(ABC):
 
         Returns
         -------
-        TimeSeries
+        AbstractTimeSeries
             Pricing data for a security under this asset class
         """
         pass
@@ -120,18 +107,6 @@ class AbstractSecurity(ABC):
         Security's descriptive data
     exposures: dict
         Security's exposure data
-
-
-    Methods
-    -------
-    get_isin() -> str
-        getter for attribute Security.isin
-    get_timeseries() -> TimeSeries
-        getter for attribute Security.timeseries
-    get_description() -> dict
-        getter for attribute Security.description
-    get_exposures() -> dict
-        getter for attribute Security.exposures
     """
 
     @abstractmethod
@@ -151,7 +126,7 @@ class AbstractSecurity(ABC):
 
         Returns
         -------
-        TimeSeries
+        AbstractTimeSeries
             Security's time series data
         """
         pass
@@ -180,15 +155,7 @@ class AbstractSecurity(ABC):
 
 
 class AbstractConnection(ABC):
-    """Abstract class for database connections
-
-    ...
-
-    Methods
-    -------
-    get_security(isin:str, date_range: Tuple[str, str]) -> Security
-        Retrieve security and data from database by isin and date_range
-    """
+    """Abstract class for database connections"""
 
     @abstractmethod
     def get_security(self, isin: str, date_range: Tuple[str, str]) -> AbstractSecurity:
@@ -199,12 +166,11 @@ class AbstractConnection(ABC):
         isin: str
             Security's ISIN (unique identifier)
         date_range: Tuple[str, str]
-            Date range by which to retrive data from
-            Example: ["2001-01-01", "2004-01-01"]
+            Date range by which to retrive data from. Should be in "yyyy-mm-dd" format.
 
         Returns
         -------
-        Security
+        AbstractSecurity
             Class containing information of the security
         """
         pass

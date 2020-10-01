@@ -42,25 +42,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
     comp_index: AbstractSecurity
         Benchmark to be compared against
 
-
-    Methods
-    -------
-    add_security(security: Security)
-        Add a Security to analyze
-    set_comp_index(comp_index: Security)
-        Add a benchmark; used to calculate beta
-    get_rebased_index(mode: str, initial_val: float) -> AnlayzerSeries
-        Get a rebased indices of securities and benchmark
-    get_returns(mode: str)
-        Get returns of securities and benchmark
-    get_betas(mode: str)
-        Get betas of securities and benchmark against benchmark
-    get_volatilities(mode: str, adj_factor: int)
-        Get volatilities of securities and benchmark
-    get_sharpes(mode: str, adj_factor: int, rfr: float)
-        Get Sharpe ratios of securities and benchmark
-
-    To Do
+    Todo
     ------
     -   Drawdown series
     -   Max Drawdown
@@ -158,7 +140,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
             A Security to be analyzed
 
 
-        To Do
+        Todo
         -------
         -   Check data frequency of incoming security, convert all security
             to a lower freq if necessary
@@ -191,7 +173,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         security: AbstractSecurity
             A Security containing benchmark to be compared against
 
-        To Do
+        Todo
         -------
         -   Check data frequency of incoming security, convert all security
             to a lower freq if necessary
@@ -218,7 +200,8 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
         Returns
         -------
-        AnalyzerSeries
+        Tuple[AnalyzerSeries, AnalyzerSeries]
+            Tuple containing two AnalyzerSeries of rebased indices for securities and comp_index
         """
 
         series, index = self.__get_series(mode)
@@ -249,7 +232,8 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
         Returns
         -------
-        AnalyzerSeries
+        Tuple[AnalyzerSeries, AnalyzerSeries]
+            Tuple containing two AnalyzerSeries of returns for securities and comp_index
         """
 
         dates = self._date_series[1:]
@@ -269,7 +253,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
     ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
         """Get betas of securities and benchmark
 
-        Notes
+        Note
         -------
         Beta of benchmark against benchmark will always be 1
 
@@ -282,7 +266,8 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
         Returns
         -------
-        AnalyzerSeries
+        Tuple[AnalyzerSeries, AnalyzerSeries]
+            Tuple containing two AnalyzerSeries of betas for securities and comp_index
         """
         dates = self._date_series[[-1]]
 
@@ -313,18 +298,26 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         mode: str
             "px" for price returns, "tr" for total returns
         adj_factor: int
-            Adjustment factor to annualize volatility. Depending on data frequency...
-                Daily: 252 (number of trading days)
-                Weekly: 52
-                Monthly: 12
-                Quarterly: 4
+            Adjustment factor to annualize volatility.
+
+
+        Note
+        -------
+        adj_factor should depend on the frequency of data:
+
+        - Daily: 252 (number of trading days in a year)
+        - Weekly: 52
+        - Monthly: 12
+        - Quarterly: 4
+
 
         Returns
         -------
-        AnalyzerSeries
+        Tuple[AnalyzerSeries, AnalyzerSeries]
+            Tuple containing two AnalyzerSeries of volatilities for securities and comp_index
 
 
-        To Do
+        Todo
         -------
         -   Automatically detect frequency so that adj_factor would no longer be needed
         """
@@ -359,18 +352,25 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         mode: str
             "px" for price returns, "tr" for total returns
         adj_factor: int
-            Adjustment factor to annualize volatility. Depending on data frequency...
-                Daily: 252 (number of trading days)
-                Weekly: 52
-                Monthly: 12
-                Quarterly: 4
+            Adjustment factor to annualize volatility
         rfr: float
             Risk free rate
 
 
+        Note
+        -------
+        adj_factor should depend on the frequency of data:
+
+        - Daily: 252 (number of trading days in a year)
+        - Weekly: 52
+        - Monthly: 12
+        - Quarterly: 4
+
+
         Returns
         -------
-        AnalyzerSeries
+        Tuple[AnalyzerSeries, AnalyzerSeries]
+            Tuple containing two AnalyzerSeries of Sharpe ratios for securities and comp_index
         """
         dates = self._date_series[[-1]]
 

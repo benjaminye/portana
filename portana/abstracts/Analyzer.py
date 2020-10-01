@@ -31,25 +31,16 @@ from .data import AbstractSecurity
 
 
 class AbstractAnalyzer(ABC):
-    """Abstract class to analyze a Security
-
-
-    Methods
-    -------
-    add_security(security: Security)
-        Add a Security to analyze
-    set_comp_index(comp_index: Security)
-        Add a benchmark; used to calculate beta
-    """
+    """Abstract class to analyze a Security"""
 
     @abstractmethod
     def add_security(self, security: AbstractSecurity):
-        """Add a Security to analyze
+        """Add a security to analyze
 
 
         Parameters
         -------
-        security: Security
+        security: AbstractSecurity
             Security object to analyze
         """
         pass
@@ -61,7 +52,7 @@ class AbstractAnalyzer(ABC):
 
         Parameters
         -------
-        security: Security
+        security: AbstractSecurity
             Security object containing the benchmark
         """
         pass
