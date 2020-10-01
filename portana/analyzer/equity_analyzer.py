@@ -1,39 +1,75 @@
-from typing import List, Union, Literal, Tuple, Dict
+from typing import List, Union, Literal, Tuple
 
 import numpy as np
 
-from ..abstracts import Data
-from ..abstracts import Analyzer
+from ..abstracts import data
+from ..abstracts import analyzer
 from ..timeseries.analyzerseries import AnalyzerSeries
 
+# Not Implemented
+# -------------------------------------
+# class EquityOutput(Analyzer.Output):
+#     """
+#     Wrapper for outputs from Equity Analyzer
+#     """
 
-class EquityOutput(Analyzer.Output):
-    """
-    Wrapper for outputs from Equity Analyzer
+#     def __init__(self):
+#         pass
+
+#     def __repr__(self):
+#         pass
+
+#     def get_period_stats(
+#         self,
+#         freq: Union[
+#             Literal["D"], Literal["W"], Literal["M"], Literal["Q"], Literal["Y"]
+#         ],
+#     ):
+#         pass
+
+#     def get_range_stats(self, date_range: Tuple[str, str]):
+#         pass
+
+
+class EquityAnalyzer(analyzer.AbstractAnalyzer):
+    """Class to analyze equity-like securities
+
+
+    Attributes
+    -------
+    securities: List[AbstractSecurity]
+        List of securities to analyze
+    comp_index: AbstractSecurity
+        Benchmark to be compared against
+
+
+    Methods
+    -------
+    add_security(security: Security)
+        Add a Security to analyze
+    set_comp_index(comp_index: Security)
+        Add a benchmark; used to calculate beta
+    get_rebased_index(mode: str, initial_val: float) -> AnlayzerSeries
+        Get a rebased indices of securities and benchmark
+    get_returns(mode: str)
+        Get returns of securities and benchmark
+    get_betas(mode: str)
+        Get betas of securities and benchmark against benchmark
+    get_volatilities(mode: str, adj_factor: int)
+        Get volatilities of securities and benchmark
+    get_sharpes(mode: str, adj_factor: int, rfr: float)
+        Get Sharpe ratios of securities and benchmark
+
+    To Do
+    ------
+    -   Drawdown series
+    -   Max Drawdown
     """
 
     def __init__(self):
-        pass
+        self.securities: List[data.AbstractSecurity] = []
+        self.comp_index: data.AbstractSecurity = None
 
-    def __repr__(self):
-        pass
-
-    def get_period_stats(
-        self,
-        freq: Union[
-            Literal["D"], Literal["W"], Literal["M"], Literal["Q"], Literal["Y"]
-        ],
-    ):
-        pass
-
-    def get_range_stats(self, date_range: Tuple[str, str]):
-        pass
-
-
-class EquityAnalyzer(Analyzer.Analyzer):
-    def __init__(self):
-        self.securities: List[Data.Security] = []
-        self.comp_index: Data.Security = None
         self._earliest_common_date: np.datetime64 = None
         self._latest_common_date: np.datetime64 = None
         self._date_series: np.ndarray = None
@@ -113,22 +149,53 @@ class EquityAnalyzer(Analyzer.Analyzer):
 
         return series, index
 
-    def add_security(self, security: Data.Security) -> None:
-        # Todo: Check frequency... if added security timeseries if of lower freq, convert all to lower freq
+    def add_security(self, security: data.AbstractSecurity) -> None:
+        """Add a Security to analyze
+
+        Parameters
+        -------
+        security: AbstractSecurity
+            A Security to be analyzed
+
+
+        To Do
+        -------
+        -   Check data frequency of incoming security, convert all security
+            to a lower freq if necessary
+        -   Add a update routine function to wrap all the individual calls
+        """
         self.securities.append(security)
 
         if self.comp_index is None:
             self.set_comp_index(security)
 
-        # Todo: Add an update routine function to wrap all these
         self.__build_col_names()
         self.__update_earliest_common_date()
         self.__update_latest_common_date()
         self.__build_dates()
         self.__build_series()
 
-    def set_comp_index(self, comp_index: Data.Security) -> None:
-        # Todo: Check frequency... if added security timeseries if of lower freq, convert all to lower freq
+    def set_comp_index(self, comp_index: data.AbstractSecurity) -> None:
+        """Add a benchmark to compare against
+        Also used for beta calculations
+
+
+        Note
+        -------
+        Right now, this is optional as first time a security is added
+        through add_security(security), comp_index will be set to that
+
+
+        Parameters
+        -------
+        security: AbstractSecurity
+            A Security containing benchmark to be compared against
+
+        To Do
+        -------
+        -   Check data frequency of incoming security, convert all security
+            to a lower freq if necessary
+        """
         self.comp_index = comp_index
         self.__update_earliest_common_date()
         self.__update_latest_common_date()
@@ -136,8 +203,23 @@ class EquityAnalyzer(Analyzer.Analyzer):
         self.__build_series()
 
     def get_rebased_index(
-        self, mode: Union[Literal["px"], Literal["tr"]], initial_val: float
-    ) -> Tuple[Data.TimeSeries, Data.TimeSeries]:
+        self, mode: Union[Literal["px"], Literal["tr"]], initial_val: float = 100.0
+    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+        """Get a rebased indices of securities and benchmark
+
+
+        Parameters
+        -------
+        mode: str
+            "px" for index built on prices, "tr" for total returns index
+        initial_val: float
+            Initial value of rebased index, defaults to 100
+
+
+        Returns
+        -------
+        AnalyzerSeries
+        """
 
         series, index = self.__get_series(mode)
         series[0], index[0] = float(initial_val), float(initial_val)
@@ -155,7 +237,20 @@ class EquityAnalyzer(Analyzer.Analyzer):
 
     def get_returns(
         self, mode: Union[Literal["px"], Literal["tr"]]
-    ) -> Tuple[Data.TimeSeries, Data.TimeSeries]:
+    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+        """Get a returns of securities and benchmark
+
+
+        Parameters
+        -------
+        mode: str
+            "px" for price returns, "tr" for total returns
+
+
+        Returns
+        -------
+        AnalyzerSeries
+        """
 
         dates = self._date_series[1:]
 
@@ -171,7 +266,24 @@ class EquityAnalyzer(Analyzer.Analyzer):
 
     def get_betas(
         self, mode: Union[Literal["px"], Literal["tr"]]
-    ) -> Tuple[Data.TimeSeries, Data.TimeSeries]:
+    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+        """Get betas of securities and benchmark
+
+        Notes
+        -------
+        Beta of benchmark against benchmark will always be 1
+
+
+        Parameters
+        -------
+        mode: str
+            "px" for price returns, "tr" for total returns
+
+
+        Returns
+        -------
+        AnalyzerSeries
+        """
         dates = self._date_series[[-1]]
 
         securities_ret, index_ret = self.get_returns(mode)
@@ -192,7 +304,30 @@ class EquityAnalyzer(Analyzer.Analyzer):
 
     def get_volatilities(
         self, mode: Union[Literal["px"], Literal["tr"]], adj_factor: int
-    ) -> Tuple[Data.TimeSeries, Data.TimeSeries]:
+    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+        """Get volatilities of securities and benchmark
+
+
+        Parameters
+        -------
+        mode: str
+            "px" for price returns, "tr" for total returns
+        adj_factor: int
+            Adjustment factor to annualize volatility. Depending on data frequency...
+                Daily: 252 (number of trading days)
+                Weekly: 52
+                Monthly: 12
+                Quarterly: 4
+
+        Returns
+        -------
+        AnalyzerSeries
+
+
+        To Do
+        -------
+        -   Automatically detect frequency so that adj_factor would no longer be needed
+        """
         dates = self._date_series[[-1]]
 
         securities_ret, index_ret = self.get_returns(mode)
@@ -215,7 +350,28 @@ class EquityAnalyzer(Analyzer.Analyzer):
 
     def get_sharpes(
         self, mode: Union[Literal["px"], Literal["tr"]], adj_factor: int, rfr: float
-    ) -> Tuple[Data.TimeSeries, Data.TimeSeries]:
+    ) -> Tuple[data.AbstractTimeSeries, data.AbstractTimeSeries]:
+        """Get Sharpe ratios of securities and benchmark
+
+
+        Parameters
+        -------
+        mode: str
+            "px" for price returns, "tr" for total returns
+        adj_factor: int
+            Adjustment factor to annualize volatility. Depending on data frequency...
+                Daily: 252 (number of trading days)
+                Weekly: 52
+                Monthly: 12
+                Quarterly: 4
+        rfr: float
+            Risk free rate
+
+
+        Returns
+        -------
+        AnalyzerSeries
+        """
         dates = self._date_series[[-1]]
 
         securities_ret, index_ret = self.get_returns(mode)
@@ -247,5 +403,5 @@ class EquityAnalyzer(Analyzer.Analyzer):
 
         return series_securities, series_index
 
-    def analyze(self) -> Analyzer.Output:
+    def analyze(self):
         pass
