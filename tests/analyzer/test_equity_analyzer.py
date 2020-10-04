@@ -659,3 +659,95 @@ def test_sharpes_dates_desired(security_1_fixture, security_2_fixture, index_fix
     npt.assert_equal(analyzer.get_sharpes("tr", 252, 0.02)[0].dates, dates)
     npt.assert_equal(analyzer.get_sharpes("px", 252, 0.02)[1].dates, dates)
     npt.assert_equal(analyzer.get_sharpes("tr", 252, 0.02)[1].dates, dates)
+
+
+# Test Drawdowns
+def test_drawdowns_securities_px(security_1_fixture, security_2_fixture, index_fixture):
+    desired = np.array(
+        [[0.0, 0.0], [0, -0.02], [0, -0.03], [0, -0.01], [0, 0], [0, 0]],
+        dtype=np.float64,
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_allclose(
+        analyzer.get_drawdowns("px")[0].results,
+        desired,
+        1e-3,
+        0,
+    )
+
+
+def test_drawdowns_securities_tr(security_1_fixture, security_2_fixture, index_fixture):
+    desired = np.array(
+        [[0.0, 0.0], [0, -0.02], [0, -0.03], [0, -0.01], [0, 0], [0, 0]],
+        dtype=np.float64,
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_allclose(
+        analyzer.get_drawdowns("tr")[0].results,
+        desired,
+        1e-3,
+        0,
+    )
+
+
+def test_drawdowns_index_px(security_1_fixture, security_2_fixture, index_fixture):
+    desired = np.array(
+        [0, 0, 0, 0, -0.009708738, 0],
+        dtype=np.float64,
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_allclose(
+        analyzer.get_drawdowns("px")[1].results,
+        desired,
+        1e-3,
+        0,
+    )
+
+
+def test_drawdowns_index_tr(security_1_fixture, security_2_fixture, index_fixture):
+    desired = np.array(
+        [0, 0, 0, 0, -0.009708738, 0],
+        dtype=np.float64,
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_allclose(
+        analyzer.get_drawdowns("tr")[1].results,
+        desired,
+        1e-3,
+        0,
+    )
+
+
+def test_drawdowns_dates_desired(security_1_fixture, security_2_fixture, index_fixture):
+    desired = np.array("2020-01-01", dtype=np.datetime64)
+    desired = desired + np.arange(6)
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_equal(analyzer.get_drawdowns("px")[0].dates, desired)
+    npt.assert_equal(analyzer.get_drawdowns("tr")[0].dates, desired)
+    npt.assert_equal(analyzer.get_drawdowns("px")[1].dates, desired)
+    npt.assert_equal(analyzer.get_drawdowns("tr")[1].dates, desired)
