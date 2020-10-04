@@ -751,3 +751,189 @@ def test_drawdowns_dates_desired(security_1_fixture, security_2_fixture, index_f
     npt.assert_equal(analyzer.get_drawdowns("tr")[0].dates, desired)
     npt.assert_equal(analyzer.get_drawdowns("px")[1].dates, desired)
     npt.assert_equal(analyzer.get_drawdowns("tr")[1].dates, desired)
+
+
+# Test Max Drawdowns
+def test_max_drawdowns_securities_px(
+    security_1_fixture, security_2_fixture, index_fixture
+):
+    desired = np.array(
+        [[0.0, -0.03]],
+        dtype=np.float64,
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_allclose(
+        analyzer.get_max_drawdowns("px")[0].results,
+        desired,
+        1e-3,
+        0,
+    )
+
+
+def test_max_drawdowns_securities_tr(
+    security_1_fixture, security_2_fixture, index_fixture
+):
+    desired = np.array(
+        [[0.0, -0.03]],
+        dtype=np.float64,
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_allclose(
+        analyzer.get_max_drawdowns("tr")[0].results,
+        desired,
+        1e-3,
+        0,
+    )
+
+
+def test_max_drawdowns_index_px(security_1_fixture, security_2_fixture, index_fixture):
+    desired = np.array(
+        [-0.009708738],
+        dtype=np.float64,
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_allclose(
+        analyzer.get_max_drawdowns("px")[1].results,
+        desired,
+        1e-3,
+        0,
+    )
+
+
+def test_max_drawdowns_index_tr(security_1_fixture, security_2_fixture, index_fixture):
+    desired = np.array(
+        [-0.009708738],
+        dtype=np.float64,
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_allclose(
+        analyzer.get_max_drawdowns("tr")[1].results,
+        desired,
+        1e-3,
+        0,
+    )
+
+
+def test_max_drawdowns_dates_desired(
+    security_1_fixture, security_2_fixture, index_fixture
+):
+    desired = np.array(["2020-01-06"], dtype=np.datetime64)
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_equal(analyzer.get_max_drawdowns("px")[0].dates, desired)
+    npt.assert_equal(analyzer.get_max_drawdowns("tr")[0].dates, desired)
+    npt.assert_equal(analyzer.get_max_drawdowns("px")[1].dates, desired)
+    npt.assert_equal(analyzer.get_max_drawdowns("tr")[1].dates, desired)
+
+
+# Test Max Drawdowns Dates
+def test_max_drawdowns_dates_securities_px(
+    security_1_fixture, security_2_fixture, index_fixture
+):
+    desired = np.array(
+        [[np.datetime64("2020-01-01"), np.datetime64("2020-01-03")]],
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_equal(
+        analyzer.get_max_drawdowns_dates("px")[0].results,
+        desired,
+    )
+
+
+def test_max_drawdowns_dates_securities_tr(
+    security_1_fixture, security_2_fixture, index_fixture
+):
+    desired = np.array(
+        [[np.datetime64("2020-01-01"), np.datetime64("2020-01-03")]],
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_equal(
+        analyzer.get_max_drawdowns_dates("tr")[0].results,
+        desired,
+    )
+
+
+def test_max_drawdowns_dates_index_px(
+    security_1_fixture, security_2_fixture, index_fixture
+):
+    desired = np.array(
+        [np.datetime64("2020-01-05")],
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_equal(
+        analyzer.get_max_drawdowns_dates("px")[1].results,
+        desired,
+    )
+
+
+def test_max_drawdowns_dates_index_tr(
+    security_1_fixture, security_2_fixture, index_fixture
+):
+    desired = np.array(
+        [np.datetime64("2020-01-05")],
+    )
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_equal(
+        analyzer.get_max_drawdowns_dates("tr")[1].results,
+        desired,
+    )
+
+
+def test_max_drawdowns_dates_dates_desired(
+    security_1_fixture, security_2_fixture, index_fixture
+):
+    desired = np.array(["2020-01-06"], dtype=np.datetime64)
+
+    analyzer = EquityAnalyzer()
+    analyzer.add_security(security_1_fixture)
+    analyzer.add_security(security_2_fixture)
+    analyzer.set_comp_index(index_fixture)
+
+    npt.assert_equal(analyzer.get_max_drawdowns_dates("px")[0].dates, desired)
+    npt.assert_equal(analyzer.get_max_drawdowns_dates("tr")[0].dates, desired)
+    npt.assert_equal(analyzer.get_max_drawdowns_dates("px")[1].dates, desired)
+    npt.assert_equal(analyzer.get_max_drawdowns_dates("tr")[1].dates, desired)
