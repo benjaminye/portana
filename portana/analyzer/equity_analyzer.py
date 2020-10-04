@@ -403,5 +403,106 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
         return series_securities, series_index
 
+    def get_drawdowns(
+        self, mode: Union[Literal["px"], Literal["tr"]]
+    ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
+        """Get drawdown series
+
+
+        Parameters
+        -------
+        mode: str
+            "px" for price returns, "tr" for total returns
+
+
+        Returns
+        -------
+        Tuple[AnalyzerSeries, AnalyzerSeries]
+            Tuple containing two AnalyzerSeries of returns for securities and comp_index
+        """
+
+        dates = self._date_series
+
+        series, index = self.get_rebased_index(mode)
+        series, index = series.get_data(), index.get_data()
+
+        results_securities = (series - np.fmax.accumulate(series)) / np.fmax.accumulate(
+            series
+        )
+        results_index = (index - np.fmax.accumulate(index)) / np.fmax.accumulate(index)
+
+        series_securities = AnalyzerSeries(dates, results_securities, self._col_names)
+        series_index = AnalyzerSeries(dates, results_index, [self.comp_index.isin])
+
+        return series_securities, series_index
+
+    def get_max_drawdowns(
+        self, mode: Union[Literal["px"], Literal["tr"]]
+    ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
+        """Get max drawdown of securities and index
+
+
+        Parameters
+        -------
+        mode: str
+            "px" for price returns, "tr" for total returns
+
+
+        Returns
+        -------
+        Tuple[AnalyzerSeries, AnalyzerSeries]
+            Tuple containing max drawdown of securities and index during the analyzed period
+        """
+
+        dates = self._date_series[[-1]]
+
+        series, index = self.get_drawdowns(mode)
+        series, index = series.get_data(), index.get_data()
+
+        results_securities = np.min(series, axis=0, keepdims=True)
+        results_index = np.min(index, keepdims=True)
+
+        series_securities = AnalyzerSeries(dates, results_securities, self._col_names)
+        series_index = AnalyzerSeries(dates, results_index, [self.comp_index.isin])
+
+        return series_securities, series_index
+
+    def get_max_drawdowns_dates(
+        self, mode: Union[Literal["px"], Literal["tr"]]
+    ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
+        """Get dates when max drawdown occured
+
+
+        Parameters
+        -------
+        mode: str
+            "px" for price returns, "tr" for total returns
+
+
+        Returns
+        -------
+        Tuple[AnalyzerSeries, AnalyzerSeries]
+            Tuple containing max drawdown of securities and index during the analyzed period
+        """
+
+        dates = self._date_series[[-1]]
+
+        series, index = self.get_drawdowns(mode)
+        series, index = series.get_data(), index.get_data()
+
+        results_securities = np.argmin(series, axis=0)
+        results_index = np.argmin(index, axis=0)
+
+        results_securities = self._date_series[results_securities]
+        results_index = self._date_series[results_index]
+
+        results_securities = np.expand_dims(results_securities, axis=0)
+        results_index = np.expand_dims(results_index, axis=0)
+
+        series_securities = AnalyzerSeries(dates, results_securities, self._col_names)
+        series_index = AnalyzerSeries(dates, results_index, [self.comp_index.isin])
+
+        return series_securities, series_index
+
     def analyze(self):
         pass
