@@ -73,8 +73,8 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
     def __update_latest_common_date(self) -> None:
         end_dates = []
         for security in self.securities:
-            start_date = security.get_timeseries().get_dates()[-1]
-            end_dates.append(start_date)
+            end_date = security.get_timeseries().get_dates()[-1]
+            end_dates.append(end_date)
 
         index_end_date = self.comp_index.get_timeseries().get_dates()[-1]
         end_dates.append(index_end_date)
@@ -82,16 +82,16 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         self._latest_common_date = min(end_dates)
 
     def __build_dates(self) -> None:
-        start = self._earliest_common_date
-        end = self._latest_common_date
+        start = str(self._earliest_common_date)
+        end = str(self._latest_common_date)
 
         dates = self.securities[0].get_timeseries()[start:end].get_dates()
 
         self._date_series = dates
 
     def __build_series(self) -> None:
-        start = self._earliest_common_date
-        end = self._latest_common_date
+        start = str(self._earliest_common_date)
+        end = str(self._latest_common_date)
 
         dates = self._date_series
 
@@ -116,8 +116,8 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
     def __get_series(
         self, mode: Union[Literal["px"], Literal["tr"]]
     ) -> Tuple[np.ndarray, np.ndarray]:
-        start = self._earliest_common_date
-        end = self._latest_common_date
+        start = str(self._earliest_common_date)
+        end = str(self._latest_common_date)
 
         if mode == "px":
             series = self._price_series.get_data().copy()

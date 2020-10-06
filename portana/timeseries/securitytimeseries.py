@@ -6,7 +6,7 @@ import pandas as pd
 from ..abstracts import timeseries
 
 
-class SimTimeSeries(timeseries.AbstractTimeSeries):
+class SecurityTimeSeries(timeseries.AbstractTimeSeries):
     """Class for representation of securities time series
 
     Parameters
@@ -43,7 +43,7 @@ class SimTimeSeries(timeseries.AbstractTimeSeries):
     def __make_self(
         self, dates: np.ndarray, prices: np.ndarray, tot_ret_idx: np.ndarray
     ):
-        return SimTimeSeries(dates, prices, tot_ret_idx)
+        return SecurityTimeSeries(dates, prices, tot_ret_idx)
 
     def __getitem__(self, subscript: Union[str, list, slice]):
         if isinstance(subscript, slice):

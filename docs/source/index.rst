@@ -43,6 +43,9 @@ Portana Abstracts
 .. automodule:: portana.abstracts.analyzer
    :members:
 
+.. automodule:: portana.abstracts.portfolio
+   :members:
+
 Portana Data
 ************************
 .. automodule:: portana.data.simulated
@@ -50,6 +53,9 @@ Portana Data
 
 .. automodule:: portana.data.generator
    :members:
+
+.. automodule:: portana.data.security
+   :members
 
 Portana Timeseries
 ************************
@@ -64,7 +70,11 @@ Portana Analyzer
 .. automodule:: portana.analyzer.equity_analyzer
    :members:
    
-
+Portana Portfolio
+************************
+.. automodule:: portana.portfolio.portfolio
+   :members:
+   
 
 
 Indices and tables
