@@ -2,7 +2,8 @@ from typing import List, Tuple
 
 from . import generator
 from ..abstracts import data
-from ..timeseries.simtimeseries import SimTimeSeries
+from ..timeseries.securitytimeseries import SecurityTimeSeries
+from .security import Equity, EquityFund
 
 
 class SimConnection(data.AbstractConnection):
@@ -67,7 +68,9 @@ class SimEquityAssetType(data.AbstractAssetType):
         self.generator.set_max_distribution(0.005)
         self.generator.set_initial_price_range((1, 1000))
 
-    def get_timeseries(self, date_range: Tuple[str, str], seed: int) -> SimTimeSeries:
+    def get_timeseries(
+        self, date_range: Tuple[str, str], seed: int
+    ) -> SecurityTimeSeries:
         """Returns a Timeseries object containing time series data
 
 
@@ -84,7 +87,7 @@ class SimEquityAssetType(data.AbstractAssetType):
         prices = self.generator.generate_prices()
         tot_ret_idx = self.generator.generate_tot_ret_idx()
 
-        return SimTimeSeries(dates, prices, tot_ret_idx)
+        return SecurityTimeSeries(dates, prices, tot_ret_idx)
 
     def get_description(self, seed: int) -> dict:
         """Get dict of descriptive fields for an equity security
@@ -144,7 +147,9 @@ class SimEquityFundAssetType(data.AbstractAssetType):
         self.generator.set_max_distribution(0.002)
         self.generator.set_initial_price_range((50, 100))
 
-    def get_timeseries(self, date_range: Tuple[str, str], seed: int) -> SimTimeSeries:
+    def get_timeseries(
+        self, date_range: Tuple[str, str], seed: int
+    ) -> SecurityTimeSeries:
         """Returns a Timeseries object containing time series data
 
 
@@ -160,7 +165,7 @@ class SimEquityFundAssetType(data.AbstractAssetType):
         prices = self.generator.generate_prices()
         tot_ret_idx = self.generator.generate_tot_ret_idx()
 
-        return SimTimeSeries(dates, prices, tot_ret_idx)
+        return SecurityTimeSeries(dates, prices, tot_ret_idx)
 
     def get_description(self, seed: int) -> dict:
         """Get dict of descriptive fields for an equity security
@@ -208,117 +213,3 @@ class SimEquityFundAssetType(data.AbstractAssetType):
         exposures["risk"] = self.generator.generate_risk()
 
         return exposures
-
-
-class SimSecurity(data.AbstractSecurity):
-    """Class containing information pertaining to a security.
-    A concrete implementation of AbstractSecurity.
-
-    Parameters
-    -------
-    isin: str
-        Security's ISIN (unique identifier)
-    timeseries: SimTimeSeries
-        Security's time series data
-    description: dict
-        Security's descriptive data
-    exposures: dict
-        Security's exposure data
-
-
-    Attributes
-    -------
-    isin: str
-        Security's ISIN (unique identifier)
-    timeseries: SimTimeSeries
-        Security's time series data
-    description: dict
-        Security's descriptive data
-    exposures: dict
-        Security's exposure data
-    """
-
-    def __init__(
-        self,
-        isin: str,
-        timeseries: SimTimeSeries,
-        description: dict,
-        exposures: dict,
-    ):
-        self.isin: str = isin
-        self.timeseries: SimTimeSeries = timeseries
-        self.description: dict = description
-        self.exposures: dict = exposures
-        super().__init__()
-
-    def __repr__(self):
-        output = ""
-        output += f"ISIN:   {self.isin} \n"
-        output += "----------------------------------------- \n"
-        for key in self.description:
-            output += f"{key.capitalize()}:  {self.description[key]} \n"
-
-        output += "----------------------------------------- \n"
-        for key in self.exposures:
-            output += f"{key.capitalize()}:  {self.exposures[key]} \n"
-
-        output += "----------------------------------------- \n"
-        output += str(self.timeseries)
-
-        return output
-
-    def get_isin(self):
-        """Getter for attribute Security.isin
-
-        Returns
-        -------
-        str
-            Security's ISIN (unique identifier)
-        """
-        return self.isin
-
-    def get_timeseries(self):
-        """Getter for attribute Security.timeseries
-
-        Returns
-        -------
-        SimTimeSeries
-            Security's time series data
-        """
-        return self.timeseries
-
-    def get_description(self):
-        """Getter for attribute Security.description
-
-        Returns
-        -------
-        dict
-            Security's description fields
-        """
-        return self.description
-
-    def get_exposures(self):
-        """Getter for attribute Security.exposures
-
-        Returns
-        -------
-        dict
-            Security's exposure fields
-        """
-        return self.exposures
-
-
-class Equity(SimSecurity):
-    """Class to represent an equity security.
-    Child of Security class.
-    """
-
-    pass
-
-
-class EquityFund(SimSecurity):
-    """Class to represent an equity fund.
-    Child of Security class.
-    """
-
-    pass

@@ -4,7 +4,7 @@ import numpy.testing as npt
 
 
 from portana.analyzer.equity_analyzer import EquityAnalyzer
-from portana.timeseries.simtimeseries import SimTimeSeries
+from portana.timeseries.securitytimeseries import SecurityTimeSeries
 from portana.data.simulated import Equity
 
 
@@ -16,7 +16,7 @@ def security_1_fixture():
     isin = "1"
     prices = np.array([200, 202, 204, 206, 208, 215], dtype=np.float64)
     tot_ret_idx = np.array([200, 202, 204, 206, 208, 215], dtype=np.float64)
-    timeseries = SimTimeSeries(dates, prices, tot_ret_idx)
+    timeseries = SecurityTimeSeries(dates, prices, tot_ret_idx)
 
     return Equity(isin, timeseries, {}, {})
 
@@ -29,7 +29,7 @@ def security_2_fixture():
     isin = "2"
     prices = np.array([100, 98, 97, 99, 100, 101], dtype=np.float64)
     tot_ret_idx = np.array([100, 98, 97, 99, 100, 101], dtype=np.float64)
-    timeseries = SimTimeSeries(dates, prices, tot_ret_idx)
+    timeseries = SecurityTimeSeries(dates, prices, tot_ret_idx)
 
     return Equity(isin, timeseries, {}, {})
 
@@ -42,7 +42,7 @@ def index_fixture():
     isin = "0"
     prices = np.array([100, 101, 102, 103, 102, 105], dtype=np.float64)
     tot_ret_idx = np.array([100, 101, 102, 103, 102, 105], dtype=np.float64)
-    timeseries = SimTimeSeries(dates, prices, tot_ret_idx)
+    timeseries = SecurityTimeSeries(dates, prices, tot_ret_idx)
 
     return Equity(isin, timeseries, {}, {})
 
