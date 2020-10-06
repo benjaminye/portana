@@ -101,3 +101,6 @@ class AnalyzerSeries(timeseries.AbstractTimeSeries):
             Numpy array of data contained in this object (excluding dates)
         """
         return self.results
+
+    def on_or_just_before(self, date: str):
+        pass

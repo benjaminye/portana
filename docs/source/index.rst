@@ -62,7 +62,7 @@ Portana Timeseries
 .. automodule:: portana.timeseries.analyzerseries
    :members:
 
-.. automodule:: portana.timeseries.simtimeseries
+.. automodule:: portana.timeseries.securitytimeseries
    :members:
    
 Portana Analyzer
