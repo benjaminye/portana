@@ -9,6 +9,11 @@ from ..timeseries.securitytimeseries import SecurityTimeSeries
 from ..data.security import PortfolioSecurity
 from ..analyzer.equity_analyzer import EquityAnalyzer
 
+"""
+ToDo
+-------
+Make this module independent of a schema
+"""
 
 CLASSIFICATION_SCHEMA = {
     "sector": {
