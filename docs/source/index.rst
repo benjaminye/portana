@@ -55,7 +55,7 @@ Portana Data
    :members:
 
 .. automodule:: portana.data.security
-   :members
+   :members:
 
 Portana Timeseries
 ************************
