@@ -1,4 +1,5 @@
 from typing import List, Dict, Tuple
+import copy
 
 import numpy as np
 
@@ -248,7 +249,7 @@ class Portfolio(AbstractPortfolio):
             ...
         }
         """
-        exposures_table = CLASSIFICATION_SCHEMA
+        exposures_table = copy.deepcopy(CLASSIFICATION_SCHEMA)
 
         for idx, security in enumerate(self.securities):
             exposures = security.get_exposures()
@@ -284,7 +285,7 @@ class Portfolio(AbstractPortfolio):
             ...
         }
         """
-        detailed_exposures_table = CLASSIFICATION_SCHEMA_DETAILED
+        detailed_exposures_table = copy.deepcopy(CLASSIFICATION_SCHEMA_DETAILED)
 
         for idx, security in enumerate(self.securities):
             exposures = security.get_exposures()

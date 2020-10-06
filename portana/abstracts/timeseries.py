@@ -66,3 +66,20 @@ class AbstractTimeSeries(ABC):
             Numpy array of data contained in this object (excluding dates)
         """
         pass
+
+    @abstractmethod
+    def on_or_just_before(self, date: str):
+        """Return the closest date on or just before a certain date
+
+
+        Parameters
+        -------
+        date: str
+            The last available data on or before this date
+
+
+        Returns
+        -------
+        AbstractTimeSeries
+        """
+        pass

@@ -106,3 +106,6 @@ class SecurityTimeSeries(timeseries.AbstractTimeSeries):
             Numpy array of data contained in this object (excluding dates)
         """
         return self.prices, self.tot_ret_idx
+
+    def on_or_just_before(self, date: str):
+        pass
