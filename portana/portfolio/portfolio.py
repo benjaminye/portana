@@ -1,5 +1,4 @@
 from typing import List, Dict, Tuple
-import copy
 
 import numpy as np
 
@@ -8,28 +7,6 @@ from ..abstracts.data import AbstractSecurity
 from ..timeseries.securitytimeseries import SecurityTimeSeries
 from ..data.security import PortfolioSecurity
 from ..analyzer.equity_analyzer import EquityAnalyzer
-
-
-CLASSIFICATION_SCHEMA = {
-    "sector": {
-        "Technology": 0.0,
-        "Industrials": 0.0,
-        "Financials": 0.0,
-    },
-    "geography": {"United States": 0.0, "Canada": 0.0},
-    "strategy": {"Growth": 0.0, "Income": 0.0, "Value": 0.0, "Balanced": 0.0},
-    "risk": {"Low": 0.0, "Medium": 0.0, "High": 0.0},
-}
-CLASSIFICATION_SCHEMA_DETAILED = {
-    "sector": {
-        "Technology": [],
-        "Industrials": [],
-        "Financials": [],
-    },
-    "geography": {"United States": [], "Canada": []},
-    "strategy": {"Growth": [], "Income": [], "Value": [], "Balanced": []},
-    "risk": {"Low": [], "Medium": [], "High": []},
-}
 
 
 class Portfolio(AbstractPortfolio):
@@ -249,11 +226,13 @@ class Portfolio(AbstractPortfolio):
             ...
         }
         """
-        exposures_table = copy.deepcopy(CLASSIFICATION_SCHEMA)
+        exposures_table = {}
 
         for idx, security in enumerate(self.securities):
             exposures = security.get_exposures()
             for exposure in exposures:
+                exposures_table.setdefault(exposure, {})
+                exposures_table[exposure].setdefault(exposures[exposure], 0)
                 exposures_table[exposure][exposures[exposure]] += self.weights[idx]
 
         return exposures_table
@@ -285,16 +264,18 @@ class Portfolio(AbstractPortfolio):
             ...
         }
         """
-        detailed_exposures_table = copy.deepcopy(CLASSIFICATION_SCHEMA_DETAILED)
+        exposures_table = {}
 
         for idx, security in enumerate(self.securities):
             exposures = security.get_exposures()
             for exposure in exposures:
-                detailed_exposures_table[exposure][exposures[exposure]].append(
+                exposures_table.setdefault(exposure, {})
+                exposures_table[exposure].setdefault(exposures[exposure], [])
+                exposures_table[exposure][exposures[exposure]].append(
                     (security.get_isin(), self.weights[idx])
                 )
 
-        return detailed_exposures_table
+        return exposures_table
 
     def get_fees(self) -> Dict[str, float]:
         """Get total fees incurred by portfolio
