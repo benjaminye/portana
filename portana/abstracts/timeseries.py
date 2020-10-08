@@ -68,18 +68,36 @@ class AbstractTimeSeries(ABC):
         pass
 
     @abstractmethod
-    def on_or_just_before(self, date: str):
-        """Return the closest date on or just before a certain date
+    def get_month_ends(self):
+        """Returns timeseries containing every month-end within current Timeseries
 
-
-        Parameters
+        Returns
         -------
-        date: str
-            The last available data on or before this date
+        AbstractTimeSeries
+            TimeSeries object containing every month-end
+        """
+        pass
+
+    @abstractmethod
+    def get_quarter_ends(self):
+        """Returns timeseries containing every quarter-end within current Timeseries
 
 
         Returns
         -------
         AbstractTimeSeries
+            TimeSeries object containing every quater-end
+        """
+        pass
+
+    @abstractmethod
+    def get_year_ends(self):
+        """Returns timeseries containing every year-end within current Timeseries
+
+
+        Returns
+        -------
+        AbstractTimeSeries
+            TimeSeries object containing every year-end
         """
         pass

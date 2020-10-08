@@ -8,6 +8,7 @@ authors = ["benjaminye <Benjamin.ye@me.com>"]
 python = "^3.8"
 numpy = "^1.19.2"
 pandas = "^1.1.2"
+camelot-py = "^0.8.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
