@@ -113,9 +113,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
 
         self._col_names = col_names
 
-    def __get_series(
-        self, mode: Union[Literal["px"], Literal["tr"]]
-    ) -> Tuple[np.ndarray, np.ndarray]:
+    def __get_series(self, mode: Literal["px", "tr"]) -> Tuple[np.ndarray, np.ndarray]:
         start = str(self._earliest_common_date)
         end = str(self._latest_common_date)
 
@@ -185,7 +183,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         self.__build_series()
 
     def get_rebased_index(
-        self, mode: Union[Literal["px"], Literal["tr"]], initial_val: float = 100.0
+        self, mode: Literal["px", "tr"], initial_val: float = 100.0
     ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get a rebased indices of securities and benchmark
 
@@ -219,7 +217,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         return series_securities, series_index
 
     def get_returns(
-        self, mode: Union[Literal["px"], Literal["tr"]]
+        self, mode: Literal["px", "tr"]
     ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get a returns of securities and benchmark
 
@@ -249,7 +247,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         return series_securities, series_index
 
     def get_betas(
-        self, mode: Union[Literal["px"], Literal["tr"]]
+        self, mode: Literal["px", "tr"]
     ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get betas of securities and benchmark
 
@@ -288,7 +286,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         return series_securities, series_index
 
     def get_volatilities(
-        self, mode: Union[Literal["px"], Literal["tr"]], adj_factor: int
+        self, mode: Literal["px", "tr"], adj_factor: int
     ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get volatilities of securities and benchmark
 
@@ -342,7 +340,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         return series_securities, series_index
 
     def get_sharpes(
-        self, mode: Union[Literal["px"], Literal["tr"]], adj_factor: int, rfr: float
+        self, mode: Literal["px", "tr"], adj_factor: int, rfr: float
     ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get Sharpe ratios of securities and benchmark
 
@@ -404,7 +402,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         return series_securities, series_index
 
     def get_drawdowns(
-        self, mode: Union[Literal["px"], Literal["tr"]]
+        self, mode: Literal["px", "tr"]
     ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get drawdown series
 
@@ -437,7 +435,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         return series_securities, series_index
 
     def get_max_drawdowns(
-        self, mode: Union[Literal["px"], Literal["tr"]]
+        self, mode: Literal["px", "tr"]
     ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get max drawdown of securities and index
 
@@ -468,7 +466,7 @@ class EquityAnalyzer(analyzer.AbstractAnalyzer):
         return series_securities, series_index
 
     def get_max_drawdowns_dates(
-        self, mode: Union[Literal["px"], Literal["tr"]]
+        self, mode: Literal["px", "tr"]
     ) -> Tuple[AnalyzerSeries, AnalyzerSeries]:
         """Get dates when max drawdown occured
 
