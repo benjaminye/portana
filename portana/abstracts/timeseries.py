@@ -120,3 +120,91 @@ class AbstractSecurityTimeSeries(AbstractTimeSeries):
             TimeSeries object containing every year-end
         """
         pass
+
+    @abstractmethod
+    def get_month_starts(self):
+        """Returns timeseries containing every month-start within current Timeseries
+
+        Returns
+        -------
+        AbstractTimeSeries
+            TimeSeries object containing every month-start
+        """
+        pass
+
+    @abstractmethod
+    def get_quarter_starts(self):
+        """Returns timeseries containing every quarter-start within current Timeseries
+
+
+        Returns
+        -------
+        AbstractTimeSeries
+            TimeSeries object containing every quater-start
+        """
+        pass
+
+    @abstractmethod
+    def get_year_starts(self):
+        """Returns timeseries containing every year-start within current Timeseries
+
+
+        Returns
+        -------
+        AbstractTimeSeries
+            TimeSeries object containing every year-start
+        """
+        pass
+
+    @abstractmethod
+    def get_period_starts(self, freq: Literal["M", "Q", "Y"]):
+        """Returns timeseries containing every period-starts within current Timeseries
+
+
+        Parameters
+        -------
+        freq: Literal["M", "Q", "Y"]
+            "M" for month-start, "Q" for quarter-start, "Y" for year-start
+
+        Returns
+        -------
+        AbstractTimeSeries
+            TimeSeries object containing every period-starts
+        """
+        pass
+
+    @abstractmethod
+    def split_month(self) -> list:
+        """Split series into each month
+
+
+        Returns
+        -------
+        List[AbstractTimeSeries]
+            List of TimeSeries object, with each element representing one month
+        """
+        pass
+
+    @abstractmethod
+    def split_quarter(self) -> list:
+        """Split series into each month
+
+
+        Returns
+        -------
+        List[AbstractTimeSeries]
+            List of TimeSeries object, with each element representing one quarter
+        """
+        pass
+
+    @abstractmethod
+    def split_year(self) -> list:
+        """Split series into each month
+
+
+        Returns
+        -------
+        List[AbstractTimeSeries]
+            List of TimeSeries object, with each element representing one year
+        """
+        pass
