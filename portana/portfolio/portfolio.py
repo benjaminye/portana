@@ -1,4 +1,4 @@
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Literal
 
 import numpy as np
 
@@ -32,6 +32,7 @@ class Portfolio(AbstractPortfolio):
         self.weights: list = []
         self.starting_nav = 0
         self.rebal: bool = True
+        self.rebal_freq: str = "data"
 
         self._earliest_common_date: np.datetime64 = None
         self._latest_common_date: np.datetime64 = None
@@ -82,10 +83,67 @@ class Portfolio(AbstractPortfolio):
 
     def __calculate_weights_timeseries(self):
         if self.rebal:
-            weights = np.array(self.weights, dtype=np.float64)
-            weights = np.expand_dims(weights, 0)
-            weights = np.repeat(weights, len(self._date_series) - 1, axis=0)
-            self._weights_timeseries = weights
+            if self.rebal_freq == "data":
+                weights = np.array(self.weights, dtype=np.float64)
+                weights = np.expand_dims(weights, 0)
+                weights = np.repeat(weights, len(self._date_series) - 1, axis=0)
+            else:
+                rebal_dates = (
+                    self.securities[0]
+                    .timeseries.get_period_ends(self.rebal_freq)
+                    .get_dates()
+                )
+
+                rebal_dates_indices = np.isin(self._date_series, rebal_dates)
+                rebal_dates_indices = list(
+                    np.argwhere(rebal_dates_indices == True).flatten()
+                )
+
+                # Handle edge case where first rebalance day is the first day in data
+                try:
+                    rebal_dates_indices.remove(0)
+                except ValueError:
+                    pass
+                rebal_dates_indices.insert(0, 0)
+
+                # Handle edge case where last rebalance day is the last day in data
+                if rebal_dates_indices[-1] == len(self._date_series) - 1:
+                    rebal_dates_indices[-1] += 1
+                    rebal_end = True
+                else:
+                    rebal_dates_indices.append(len(self._date_series))
+                    rebal_end = False
+
+                weights = np.zeros((0, len(self.securities)), dtype=np.float64)
+
+                for idx, i in enumerate(rebal_dates_indices[:-1]):
+                    start_index = i
+                    end_index = rebal_dates_indices[idx + 1]
+                    length = end_index - start_index
+
+                    period_weights = np.zeros(
+                        (length, len(self.securities)), dtype=np.float64
+                    )
+                    period_weights[0] = self.weights
+
+                    rets = self.__get_individual_price_returns()[
+                        start_index : end_index - 1
+                    ]
+                    rets = rets + 1
+
+                    period_weights[1:] = rets
+
+                    period_weights = np.cumprod(period_weights, axis=0)
+                    period_weights = period_weights / np.expand_dims(
+                        period_weights.sum(axis=1), axis=1
+                    )
+                    weights = np.vstack((weights, period_weights))
+
+                if rebal_end:
+                    weights[-1] = self.weights
+
+                weights = np.delete(weights, 0, 0)
+
         else:
             weights = np.zeros(
                 (len(self._date_series), len(self.securities)), dtype=np.float64
@@ -98,9 +156,10 @@ class Portfolio(AbstractPortfolio):
             weights[1:] = rets
 
             weights = np.cumprod(weights, axis=0)
+            weights = weights / np.expand_dims(weights.sum(axis=1), axis=1)
             weights = np.delete(weights, 0, 0)
 
-            self._weights_timeseries = weights
+        self._weights_timeseries = weights
 
     def __get_port_price_returns(self) -> np.ndarray:
         rets = self.__get_individual_price_returns()
@@ -153,7 +212,9 @@ class Portfolio(AbstractPortfolio):
         """
         self.starting_nav = starting_nav
 
-    def set_rebal(self, is_enabled: bool):
+    def set_rebal(
+        self, is_enabled: bool, freq: Literal["data", "M", "Q", "Y"] = "data"
+    ):
         """Set the rebal policy of portfolio
 
 
@@ -161,13 +222,16 @@ class Portfolio(AbstractPortfolio):
         -------
         is_enabled: bool
             True to rebal portfolio every period, False to turn off rebal
-
+        freq: bool
+            Rebal frequency. "data": same as data frequency; "M": Monthly; "Q": Quarterly;
+            "Y": Yearly
 
         Returns
         -------
         None
         """
         self.rebal = is_enabled
+        self.rebal_freq = freq
         self.__calculate_weights_timeseries()
 
     def securitize(self) -> PortfolioSecurity:

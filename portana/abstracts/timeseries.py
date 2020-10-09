@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Tuple, Union
+from typing import Tuple, Union, Literal
 
 from numpy import ndarray
 from pandas import DataFrame
@@ -67,6 +67,8 @@ class AbstractTimeSeries(ABC):
         """
         pass
 
+
+class AbstractSecurityTimeSeries(AbstractTimeSeries):
     @abstractmethod
     def get_month_ends(self):
         """Returns timeseries containing every month-end within current Timeseries
@@ -94,6 +96,23 @@ class AbstractTimeSeries(ABC):
     def get_year_ends(self):
         """Returns timeseries containing every year-end within current Timeseries
 
+
+        Returns
+        -------
+        AbstractTimeSeries
+            TimeSeries object containing every year-end
+        """
+        pass
+
+    @abstractmethod
+    def get_period_ends(self, freq: Literal["M", "Q", "Y"]):
+        """Returns timeseries containing every period-end within current Timeseries
+
+
+        Parameters
+        -------
+        freq: Literal["M", "Q", "Y"]
+            "M" for month-end, "Q" for quarter-end, "Y" for year-end
 
         Returns
         -------
