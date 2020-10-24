@@ -143,7 +143,6 @@ class SimQuery(data.AbstractQuery):
         'sector': 'Industrials',
         'geography': 'Canada',
         '5y_sharpe': 221.8231716},
-
         '19527': {'name': 'Simulated Security 19527',
         'ticker': 'FP',
         'sector': 'Industrials',
