@@ -289,7 +289,7 @@ class Generator:
             Sector
         """
         sectors = ["Technology", "Industrials", "Financials"]
-        return self.__random_choice(sectors)
+        return self.__random_choice(sectors, 1)
 
     def generate_geography(self) -> str:
         """Generate geography
@@ -304,7 +304,7 @@ class Generator:
             Geography
         """
         geographies = ["United States", "Canada"]
-        return self.__random_choice(geographies)
+        return self.__random_choice(geographies, 2)
 
     def generate_strategy(self) -> str:
         """Generate a strategy
@@ -318,7 +318,7 @@ class Generator:
             Strategy
         """
         strategies = ["Growth", "Income", "Value", "Balanced"]
-        return self.__random_choice(strategies)
+        return self.__random_choice(strategies, 3)
 
     def generate_risk(self) -> str:
         """Generate risk profile
@@ -333,9 +333,9 @@ class Generator:
             Risk Profile
         """
         risks = ["High", "Medium", "Low"]
-        return self.__random_choice(risks)
+        return self.__random_choice(risks, 4)
 
-    def __random_choice(self, choices: list) -> str:
+    def __random_choice(self, choices: list, delta: int = 0) -> str:
         """Generate a price time series
 
 
@@ -344,5 +344,5 @@ class Generator:
         numpy.ndarray
             Numpy array of prices
         """
-        random.seed(a=self.seed)
+        random.seed(a=self.seed + delta)
         return random.choice(choices)
