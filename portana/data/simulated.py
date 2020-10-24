@@ -1,9 +1,11 @@
-from typing import List, Tuple
+from typing import List, Tuple, Literal, Dict, Union
+
+import pandas as pd
 
 from . import generator
 from ..abstracts import data
 from ..timeseries.securitytimeseries import SecurityTimeSeries
-from .security import Equity, EquityFund
+from .security import Equity, EquityFund, Security
 
 
 class SimConnection(data.AbstractConnection):
@@ -52,8 +54,122 @@ class SimConnection(data.AbstractConnection):
         elif self._asset_type.__class__ == SimEquityFundAssetType:
             return EquityFund(isin, timeseries, description, exposures)
 
-    def query(self) -> List[data.AbstractSecurity]:
-        pass
+
+class SimQuery(data.AbstractQuery):
+    """Class for sending queries to a simulated database
+
+
+    Note
+    -------
+    Currently, the simulated database is consisted of 5000 rows of simulated securities.
+    The equity database has these fields "isin", "name", "ticker",
+    "sector", "geography", "5y_sharpe".
+
+    The equity funds database has "isin", "name", "fee",
+    "geography", "strategy", "risk", "5y_sharpe".
+
+    The database is stored as a csv files under portana/data/simulated_db.
+    The query is implemented through pandas.DataFrame's query method.
+
+
+    Parameters
+    -------
+    asset_type: str
+        Either "equity" or "equityfunds", this determines which database to find data from
+    fields: dict
+        A dictionary containing fields to query. Example: {"geography": "Canada"}
+    sort_by: str
+        Field by which to sort the result, default None
+    limit: int
+        Number of results to return, default None (all results)
+    offset: int
+        The offset of the results (e.g. offset of 1 will return results from the second row),
+        default None (no offset)
+    """
+
+    def __init__(
+        self,
+        asset_type: str,
+        fields: dict,
+        sort_by: str = None,
+        limit: int = None,
+        offset: int = 0,
+    ):
+        self.asset_type = asset_type
+        self.fields = fields
+        self.sort_by = sort_by
+        self.limit = limit
+        self.offset = offset
+
+    def _get_sim_equity(self) -> pd.DataFrame:
+        df = pd.read_csv("./portana/data/simulated_db/equities.csv", index_col=0)
+
+        return df
+
+    def _get_sim_equity_fund(self) -> pd.DataFrame:
+        df = pd.read_csv("./portana/data/simulated_db/equity_funds.csv", index_col=0)
+
+        return df
+
+    def build_query(self):
+        """Generate query string to send to database server
+
+        Returns
+        -------
+        str
+            Query string to send to the server
+        """
+        query_str = ""
+
+        for key, item in self.fields.items():
+            query_str += f"{key} == '{item}' and "
+
+        return query_str[:-5]
+
+    def send_query(self) -> Dict[str, Dict[str, Union[str, float]]]:
+        """Sends query and returns data
+
+        Returns
+        -------
+        dict
+            Result of the query
+
+        Example
+        -------
+        >>> q = SimQuery("equity", {"geography": "Canada"}, "5y_sharpe", 2, 0)
+        >>> q.send_query()
+        {'16366': {'name': 'Simulated Security 16366',
+        'ticker': 'W',
+        'sector': 'Industrials',
+        'geography': 'Canada',
+        '5y_sharpe': 221.8231716},
+
+        '19527': {'name': 'Simulated Security 19527',
+        'ticker': 'FP',
+        'sector': 'Industrials',
+        'geography': 'Canada',
+        '5y_sharpe': 170.7695025}}
+        """
+        if self.asset_type.lower() == "equity":
+            db = self._get_sim_equity()
+
+        if self.asset_type.lower() == "equityfund":
+            db = self._get_sim_equity_fund()
+
+        query_str = self.build_query()
+
+        result = db.query(query_str)
+
+        if self.sort_by:
+            result = result.sort_values(self.sort_by, ascending=False)
+
+        if self.limit:
+            result = result[self.offset : self.offset + self.limit]
+
+        result_dict = result.to_dict("index")
+        result_dict = {str(key): value for key, value in result_dict.items()}
+
+        return result_dict
 
 
 class SimEquityAssetType(data.AbstractAssetType):

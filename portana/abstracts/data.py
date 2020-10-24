@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Tuple
+from typing import List, Tuple, Dict, Union
 
 from .timeseries import AbstractTimeSeries
 
@@ -58,39 +58,6 @@ class AbstractAssetType(ABC):
         {"currency": "USD"}
         """
         pass
-
-
-# Not Implemented
-# ------------------------------------------
-# class FrequencyConverter(ABC):
-#     @abstractmethod
-#     def get_daily(self) -> TimeSeries:
-#         pass
-
-#     @abstractmethod
-#     def get_weekly(self) -> TimeSeries:
-#         pass
-
-#     @abstractmethod
-#     def get_monthly(self) -> TimeSeries:
-#         pass
-
-#     @abstractmethod
-#     def get_quarterly(self) -> TimeSeries:
-#         pass
-
-#     @abstractmethod
-#     def get_yearly(self) -> TimeSeries:
-#         pass
-
-#     @abstractmethod
-#     def get_freq(
-#         self,
-#         freq: Union[
-#             Literal["D"], Literal["W"], Literal["M"], Literal["Q"], Literal["Y"]
-#         ],
-#     ) -> TimeSeries:
-#         pass
 
 
 class AbstractSecurity(ABC):
@@ -175,13 +142,28 @@ class AbstractConnection(ABC):
         """
         pass
 
-    # Not Implemented
+
+class AbstractQuery(ABC):
+    """Class for sending queries to database"""
+
     @abstractmethod
-    def query(self) -> List[AbstractSecurity]:
+    def build_query(self) -> str:
+        """Generate query string to send to database server
+
+        Returns
+        -------
+        str
+            Query string to send to the server
+        """
         pass
 
+    @abstractmethod
+    def send_query(self) -> Dict[str, Dict[str, Union[str, float]]]:
+        """Sends query and returns data
 
-# Not Implemented
-# ----------------------
-# class Query(ABC):
-# pass
+        Returns
+        -------
+        dict
+            Result of the query
+        """
+        pass
