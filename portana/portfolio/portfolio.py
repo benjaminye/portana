@@ -81,7 +81,7 @@ class Portfolio(AbstractPortfolio):
 
         return rets.get_data()
 
-    def __calculate_weights_timeseries(self):
+    def __calculate_weights(self):
         if self.rebal:
             if self.rebal_freq == "data":
                 weights = np.array(self.weights, dtype=np.float64)
@@ -195,7 +195,17 @@ class Portfolio(AbstractPortfolio):
         self.__update_earliest_common_date()
         self.__update_latest_common_date()
         self.__build_dates()
-        self.__calculate_weights_timeseries()
+        self.__calculate_weights()
+
+    def get_securities(self) -> List[AbstractSecurity]:
+        """Get list of securities in portfolio
+
+        Returns
+        -------
+        List[AbstractSecurity]
+            List of securities
+        """
+        return self.securities
 
     def set_starting_nav(self, starting_nav: float):
         """Set the starting NAV of the portfolio
@@ -232,7 +242,7 @@ class Portfolio(AbstractPortfolio):
         """
         self.rebal = is_enabled
         self.rebal_freq = freq
-        self.__calculate_weights_timeseries()
+        self.__calculate_weights()
 
     def securitize(self) -> PortfolioSecurity:
         """Get simulated historical NAV of the portfolio,
